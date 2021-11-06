@@ -1,20 +1,84 @@
 html, body{
     margin:0px;
     padding:0px;
+    background-color:#f2f2f2;
 }
 
 
-.navbar{
-    background-color: #f2f2f2;
-}
 
-.categories{
-    background-color: #f2f2f2;
-}
-
-.new-box{
-    padding:250px; background-color:#f2f2f2;
-
+.btn-outline{
+    border-color: #E3B232;
+    color: #E3B232;
 }
 
 
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+.login-button {
+    border-radius:30px;
+    background-color: #E3B232;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+
+    margin:0 auto;
+    display:block;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+.loginpage{
+padding-top: 5%;
+padding-left:15%;
+padding-right:15%;
+
+
+}
+.loginpage:after {
+  content: "";
+  display: table;
+  clear: both;
+
+
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 350px;
+  }
+
+#leftpage{
+background-color:rgb(230, 232, 230);
+border-radius: 15px;
+}
