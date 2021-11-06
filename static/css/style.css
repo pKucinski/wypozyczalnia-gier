@@ -179,3 +179,14 @@ color: #E3B232;
 #faq u {
    color: #F4C332;
 }
+
+
+.fa-social {
+  font-size: 30px;
+  width: 30px;
+  margin: 5px 2px;
+}
+
+.fa-social:hover {
+    opacity: 0.7;
+}

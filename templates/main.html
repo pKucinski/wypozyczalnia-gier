@@ -59,6 +59,11 @@
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mx-auto mb-2 mb-lg-0" id="categories">
         <li class="nav-item">
             <a class="nav-link category" href="#">Gry imprezowe</a>
@@ -81,11 +86,96 @@
         <li class="nav-item">
             <a class="nav-link category" href="#">Puzzle</a>
         </li>
-    </ul>
+    </ul></div>
 </nav>
 
 
+
 {% block body %} {% endblock %}
+<div class="footer">
+
+    <footer class="text-center text-lg-start border mt-xl-5 pt-4">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-uppercase mb-4">Kategorie</h5>
+
+          <ul class="list-unstyled mb-4">
+            <li>
+              <a href="#!">Gry imprezowe</a>
+            </li>
+            <li>
+              <a href="#!">Gry zręcznościowe</a>
+            </li>
+            <li>
+              <a href="#!">Gry dla dzieci</a>
+            </li>
+            <li>
+              <a href="#!">Gry strategiczne</a>
+            </li>
+            <li>
+              <a href="#!">Gry kooperacyjne</a>
+            </li>
+             <li>
+              <a href="#!">Gry RPG</a>
+            </li>
+            <li>
+              <a href="#!">Puzzle</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-uppercase mb-4">Nawigacja</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Profil</a>
+            </li>
+            <li>
+              <a href="#!">Koszyk</a>
+            </li>
+            <li>
+              <a href="#!">FAQ</a>
+            </li>
+            <li>
+              <a href="#!">Wyloguj</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-uppercase mb-4">Kontakt</h5>
+
+          <ul class="list-unstyled">
+            <li>
+                <i class="m-2 fas fa-social fa-envelope"></i>
+                <i class="m-1 fab fa-social fa-instagram-square"></i>
+                <i class="m-1 fab fa-social fa-facebook-square"></i>
+
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-uppercase mb-4">Zapisz się do newslettera i bądź na bieżąco z nowościami</h5>
+
+          <div class="form-outline form-white mb-4">
+            <input type="email" id="form5Example2" class="form-control" placeholder="Podaj e-mail"/>
+          <button type="submit" class="btn btn-search">Subskrubj</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center p-3 border-top border-white">
+      © 2021 Copyright:
+      <a href="https://diceplay.com/">DicePlay</a>
+    </div>
+  </footer>
+
+</div>
 
 
 <script src="{% static 'js/script.js' %}"></script>
