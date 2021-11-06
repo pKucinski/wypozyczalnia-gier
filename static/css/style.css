@@ -1,18 +1,44 @@
+/* MAIN */
+
 html, body{
     margin:0px;
     padding:0px;
     background-color:#f2f2f2;
 }
 
+/* unvisited link */
+a:link,a:visited,a:active {
+  color: #202020;
+  text-decoration: none;
+}
 
+/* mouse over link */
+a:hover {
+  color: #E3B232;
+  text-decoration: none;
 
-.btn-outline{
-    border-color: #E3B232;
-    color: #E3B232;
 }
 
 
 
+
+.navbar {
+    padding-left: 5em;
+    padding-right: 15em;
+}
+
+.btn-search{
+    border-color: #E3B232;
+    color: #E3B232;
+}
+
+.btn-search:hover{
+    border-color: #F4C332;
+    color: #E3B232;
+}
+
+
+/* LOGIN/REGISTER */
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -37,7 +63,7 @@ input[type=text], input[type=password] {
     display:block;
 }
 
-button:hover {
+login-button:hover {
   opacity: 0.8;
 }
 
@@ -50,10 +76,6 @@ input[type=text], input[type=password] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-
-
-
-
 
 
 .loginpage{
@@ -81,4 +103,79 @@ padding-right:15%;
 #leftpage{
 background-color:rgb(230, 232, 230);
 border-radius: 15px;
+  margin-top:25px;
+}
+
+
+/* INDEX */
+
+.container{
+    padding-top: 2%;
+}
+
+.card{
+    margin: 1% 1% 1% 2%;
+}
+
+card:hover{
+
+}
+
+#categories a {
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
+
+
+  padding: 15px 20px;
+  position: relative;
+}
+#categories a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+#categories a:hover:after {
+  width: 100%;
+  left: 0;
+}
+@media screen and (max-height: 300px) {
+	ul {
+		margin-top: 40px;
+	}
+}
+
+
+.add-cart{
+float: right;
+margin-top: -15%;
+}
+
+.add-cart .fas{
+    font-size:25px;
+}
+
+
+.add-cart:hover{
+color: #E3B232;
+}
+
+
+
+/* FAQ */
+
+.main-color{
+   color: #F4C332;
+}
+
+
+#faq u {
+   color: #F4C332;
 }
