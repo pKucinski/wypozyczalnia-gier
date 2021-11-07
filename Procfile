@@ -1,1 +1,1 @@
-web: gunicorn wypozyczalnia-gier.wsgi --log-file-
+web: gunicorn wypozyczalnia-gier.wsgi --log-file -

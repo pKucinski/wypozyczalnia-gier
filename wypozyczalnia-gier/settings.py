@@ -31,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'wypozyczalnia_gier.urls'
+ROOT_URLCONF = 'wypozyczalnia-gier.urls'
 
 TEMPLATES = [
     {
@@ -49,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wypozyczalnia_gier.wsgi.application'
+WSGI_APPLICATION = 'wypozyczalnia-gier.wsgi.application'
 
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
@@ -83,9 +83,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#STATICFILES_DIRS = ['static']
+STATICFILES_DIRS = ['static']
 
 MEDIA_URL = '/media/'
 
