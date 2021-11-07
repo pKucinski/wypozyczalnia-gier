@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ['dice-play.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['dice-play.herokuapp.com', '127.0.0.1', 'localhost', 'diceplay.xyz']
 
 
 INSTALLED_APPS = [
