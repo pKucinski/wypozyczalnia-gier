@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ['https://dice-play.herokuapp.com/', '127.0.0.1:8000', 'localhost']
+ALLOWED_HOSTS = ['https://dice-play.herokuapp.com/', '127.0.0.1', 'localhost']
 
 
 INSTALLED_APPS = [
@@ -83,7 +83,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = ['static']
 
