@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 m-2" style="background-color: white;">
+            <h3 class="pt-2">Profil</h3>
+            <hr/>
+            <h5>Imię:</h5>
+            <h5>Nazwisko:</h5>
+            <h5>E-mail:</h5>
+            <h5>Ulica</h5>
+            <h5>Numer domu/mieszkania:</h5>
+            <h5>kod pocztowy:</h5>
+            <h5>Miasto:</h5>
+
+            <button type="submit" class="m-3 btn btn-search">Zmień Dane</button>
+
+        </div>
+        <div id="profile-list" class="col-3 m-2"style="background-color: white;">
+           <ul>
+               <a href="/profil"><li>Profil</li></a>
+               <hr/>
+               <a href="/haslo"><li>Zmień hasło</li></a>
+               <hr/>
+               <a href="/zamowienia"><li>Zamówienia</li></a>
+               <hr/>
+               <a href=""><li>Wyologuj</li></a>
+           </ul>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

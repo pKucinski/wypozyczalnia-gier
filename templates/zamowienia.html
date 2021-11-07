@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 m-2" style="background-color: white;">
+            <h3 class="pt-2">Ostatnie wypożyczenia</h3>
+            <hr/>
+            <div class="card p-2">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img img-fluid" src="{% static 'img/games/game1.png'%}" alt="Suresh Dasari Card">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <h5 class="card-title">Jumanji</h5>
+                        <p class="card-text">Status: Zwrócono</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p-2">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src="{% static 'img/games/game1.png'%}" alt="Suresh Dasari Card">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <h5 class="card-title">Jumanji</h5>
+                        <p class="card-text">Status: Zwrócono</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p-2">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src="{% static 'img/games/game1.png'%}" alt="Suresh Dasari Card">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <h5 class="card-title">Jumanji</h5>
+                        <p class="card-text">Status: Zwrócono</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="profile-list" class="col-3 m-2"style="background-color: white;">
+           <ul>
+               <a href="/profil"><li>Profil</li></a>
+               <hr/>
+               <a href="/haslo"><li>Zmień hasło</li></a>
+               <hr/>
+               <a href="/zamowienia"><li>Zamówienia</li></a>
+               <hr/>
+               <a href=""><li>Wyologuj</li></a>
+           </ul>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
