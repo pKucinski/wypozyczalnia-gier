@@ -83,14 +83,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if DEBUG:
-    STATICFILES_DIRS = ['static']
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#if DEBUG:
+#    STATICFILES_DIRS = ['static']
+#else:
+#    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Delete if local
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = ['static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = ['static']
 
 MEDIA_URL = '/media/'
 
