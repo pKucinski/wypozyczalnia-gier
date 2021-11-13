@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
+
+
 
 
 def index(request):
@@ -7,6 +10,9 @@ def index(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def registration(request):
+    return render(request, 'registration/registration.html')
 
 
 def faq(request):

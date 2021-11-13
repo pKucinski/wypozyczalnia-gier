@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block title %} Rejestracja {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="loginpage">
+    <div class="column" id="leftpage">
+        <h2>Zarejestruj się</h2>
+        <div class="container">
+        <form method="post">
+          <label for="uname"><b>Nazwa użytkownika</b></label>
+            <input type="text" placeholder="Nazwa użytkownika" name="uname" required>
+
+            <label for="psw"><b>E-mail</b></label>
+            <input type="password" placeholder="Enter Email" name="E-mail" required>
+
+            <label for="psw"><b>Hasło</b></label>
+            <input type="password" placeholder="Hasło" name="psw" required>
+
+            <label for="psw"><b>Potwierdź hasło</b></label>
+            <input type="password" placeholder="Potwierdź hasło" name="psw" required>
+
+            <button class="login-button" type="submit">Zarejestruj</button>
+        </form>
+        </div>
+
+    </div>
+     <div class="column" id="rightpage">
+        <h2>Masz już konto? Zaloguj się!</h2>
+            <a href="{% url 'login' %}"><input type="submit" class="login-button" id="goToRegistrationButton" value="Zaloguj się" /></a>
+
+        <div class="container">
+            <p><h3>Dlaczego warto mieć konto w DicePlay</h3></p>
+            <div class="registration_right_page_login">
+                <li class="nav-item">
+                    <img src="{% static 'img/basket.png'%}" class="registration_page_img" alt="...">Aby móc realizować zamówienia
+                </li>
+                <li class="nav-item">
+                    <img src="{% static 'img/writing-icon.png'%}" class="registration_page_img" alt="...">Aby recenzować produkty
+                </li>
+                <li class="nav-item">
+                    <img src="{% static 'img/last_order.png'%}" class="registration_page_img" alt="...">Aby sprawdzić poprzednie zamówienia
+                </li>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+
 ]
 
 MIDDLEWARE = [
@@ -35,8 +36,9 @@ ROOT_URLCONF = 'wypozyczalnia-gier.urls'
 
 TEMPLATES = [
     {
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        #'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +86,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Delete if local
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = ['static']
 
@@ -96,3 +98,4 @@ USER_AGENTS_CACHE = 'default'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/'

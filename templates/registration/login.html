@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="loginpage">
+    <div class="column" id="leftpage">
+        <h2>Zaloguj się</h2>
+        <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                          <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+            <input type="submit" class="login-button" id="loginbutton" value="Zaloguj" />
+
+        </form>
+        </div>
+    </div>
+     <div class="column" id="rightpage">
+        <h2>Nie masz jeszcze konta? Zarejestruj się!</h2>
+          <input type="submit" class="login-button" id="goToRegistrationButton" value="Zaloguj się" />
+
+        <div class="container">
+            <p><h3>Dlaczego warto mieć konto w DicePlay</h3></p>
+            <div class="registration_right_page_login">
+                <li class="nav-item">
+                    <img src="{% static 'img/basket.png'%}" class="registration_page_img" alt="...">Aby móc realizować zamówienia
+                </li>
+                <li class="nav-item">
+                    <img src="{% static 'img/writing-icon.png'%}" class="registration_page_img" alt="...">Aby recenzować produkty
+                </li>
+                <li class="nav-item">
+                    <img src="{% static 'img/last_order.png'%}" class="registration_page_img" alt="...">Aby sprawdzić poprzednie zamówienia
+                </li>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
