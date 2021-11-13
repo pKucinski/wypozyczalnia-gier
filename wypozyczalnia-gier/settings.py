@@ -10,9 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-
 ALLOWED_HOSTS = ['dice-play.herokuapp.com', '127.0.0.1', 'localhost', 'diceplay.xyz', 'www.diceplay.xyz']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,10 +53,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wypozyczalnia-gier.wsgi.application'
 
-
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-DATABASES = {'default': config('DATABASES_URL', default=default_dburl, cast=dburl),}
-
+DATABASES = {'default': config('DATABASES_URL', default=default_dburl, cast=dburl), }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -92,9 +88,9 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#Delete if local
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = ['static']
+# Delete if local
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = ['static']
 
 MEDIA_URL = '/media/'
 
@@ -102,12 +98,10 @@ MEDIA_ROOT = 'media'
 
 USER_AGENTS_CACHE = 'default'
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 cloudinary.config(
-  cloud_name = "hpqm1tn3x",
-  api_key = "395846347986555",
-  api_secret = "i3wkNv7yMjPCXFUIGgv8SCrTp1c"
+    cloud_name="hpqm1tn3x",
+    api_key="395846347986555",
+    api_secret="i3wkNv7yMjPCXFUIGgv8SCrTp1c"
 )
