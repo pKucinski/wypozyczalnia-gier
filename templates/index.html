@@ -31,74 +31,21 @@
   </button>
 </div>
 
+  <div class="row recommended">
 
-    <div class="row recommended">
-    <div class="card col-4 col-lg-3" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
+{% for product in products|slice:"10" %}
 <div class="card col-4 col-lg-3" style="width: 18rem;">
   <div class="card-body">
      <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
+      <h5 class="card-title mt-2">{{ product.title }}</h5>
+      <p class="card-text">{{ product.price }}/dzień</p>
       <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
   </div>
 </div>
-<div class="card col-4 col-lg-3" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
-<div class="card col-4 col-lg-3" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
-<div class="card col-4 col-lg-3" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
-<div class="card col-4 col-lg-3" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
-<div class="card col-3 d-none d-xl-block" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
-<div class="card col-3 d-none d-xl-block" style="width: 18rem;">
-  <div class="card-body">
-     <img src="{% static 'img/games/game1.png'%}" class="d-block w-100" alt="...">
-      <h5 class="card-title mt-2">Jumanji</h5>
-      <p class="card-text">25zł/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
-  </div>
-</div>
+{% endfor %}
 </div>
 </div>
 
 
 {% endblock %}
+
