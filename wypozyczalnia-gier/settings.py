@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 from decouple import config
 from dj_database_url import parse as dburl
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
@@ -19,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -96,3 +100,10 @@ USER_AGENTS_CACHE = 'default'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+cloudinary.config(
+  cloud_name = "hpqm1tn3x",
+  api_key = "395846347986555",
+  api_secret = "i3wkNv7yMjPCXFUIGgv8SCrTp1c"
+)
