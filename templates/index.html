@@ -36,7 +36,7 @@
 {% for product in products|slice:"10" %}
 <div class="card col-4 col-lg-3" style="width: 18rem;">
   <div class="card-body">
-     <img src="{% static '{{product.image}}'%}" class="d-block w-100" alt="...">
+     <img src="{{ product.image.url }}" class="d-block w-100" alt="...">
       <h5 class="card-title mt-2">{{ product.title }}</h5>
       <p class="card-text">{{product.price}}/dzień</p>
       <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
