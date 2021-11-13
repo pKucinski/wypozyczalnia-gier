@@ -90,7 +90,7 @@ STATIC_URL = '/static/'
 #Delete if local
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#STATICFILES_DIRS = ['static']
+STATICFILES_DIRS = ['static']
 
 MEDIA_URL = '/media/'
 
