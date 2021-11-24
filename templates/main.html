@@ -45,18 +45,24 @@
                                 <p>Profil</p>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light text-small shadow">
+                                {% if user.is_authenticated %}
                                 <li><a class="dropdown-item" href="/profil">{{ user.get_username }}</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+
+                                {% endif %}
+
                                 <li><a class="dropdown-item" href="/accounts/login">Zaloguj się</a></li>
                                 <li><a class="dropdown-item" href="/registration">Zarejestruj się</a></li>
+                                {% if user.is_authenticated %}
                                 <li><a class="dropdown-item" href="/profil">Profil</a></li>
                                 <li><a class="dropdown-item" href="/zamowienia">Zamówienia</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="/logout">Wyloguj</a></li>
+                                    <li><a class="dropdown-item" href="/logout">Wyloguj</a></li>
+                                 {% endif %}
                             </ul>
                         </div>
                 </div>
@@ -68,10 +74,10 @@
                 </div>
                 <div class="col">
                     <a href="/faq">
-                        <div class="row text-center">
+                        <span class="row text-center">
                             <span class="fa fa-question-circle"></span>
                             <p>Pomoc</p>
-                        </div>
+                        </span>
                     </a>
                 </div>
             </div>
@@ -153,17 +159,19 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">Profil</a>
+                            <a href="/profil">Profil</a>
                         </li>
                         <li>
                             <a href="#!">Koszyk</a>
                         </li>
                         <li>
-                            <a href="#!">FAQ</a>
+                            <a href="/faq">FAQ</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li>
-                            <a href="#!">Wyloguj</a>
+                            <a href="/logout">Wyloguj</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
 
