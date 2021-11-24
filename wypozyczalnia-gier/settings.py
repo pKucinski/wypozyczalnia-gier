@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'cloudinary'
+    'products'
+
 ]
 
 MIDDLEWARE = [
@@ -37,6 +39,7 @@ ROOT_URLCONF = 'wypozyczalnia-gier.urls'
 
 TEMPLATES = [
     {
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates'],
         'APP_DIRS': True,
@@ -83,21 +86,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#if DEBUG:
-#    STATICFILES_DIRS = ['static']
-#else:
-#    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Delete if local
+#Delete if local
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#STATICFILES_DIRS = ['static']
+STATICFILES_DIRS = ['static']
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'media'
 
 USER_AGENTS_CACHE = 'default'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -106,3 +105,5 @@ cloudinary.config(
     api_key="395846347986555",
     api_secret="i3wkNv7yMjPCXFUIGgv8SCrTp1c"
 )
+
+LOGIN_REDIRECT_URL = '/'
