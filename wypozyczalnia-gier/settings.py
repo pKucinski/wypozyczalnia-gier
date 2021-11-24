@@ -84,9 +84,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+if DEBUG:
+    STATICFILES_DIRS = ['static']
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = ['static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 USER_AGENTS_CACHE = 'default'
