@@ -5,7 +5,7 @@
 
 <div class="loginpage">
     <div class="column" id="leftpage">
-        <h2>Zaloguj się</h2>
+        <h1 class="display-3">Zaloguj się!</h1>
         <div class="container">
         <form method="post">
             {% csrf_token %}
@@ -27,7 +27,7 @@
     </div>
      <div class="column" id="rightpage">
         <h2>Nie masz jeszcze konta? Zarejestruj się!</h2>
-          <input type="submit" class="login-button" id="goToRegistrationButton" value="Zaloguj się" />
+         <a href="/registration/"> <input type="submit" class="login-button" id="goToRegistrationButton" value="Zarejestruj się" /></a>
 
         <div class="container">
             <p><h3>Dlaczego warto mieć konto w DicePlay</h3></p>

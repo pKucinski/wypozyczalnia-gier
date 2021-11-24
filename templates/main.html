@@ -20,6 +20,7 @@
 
 <body>
 
+
 <nav class="navbar xx navbar-expand-lg" style="background-color: white;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><img style="width:8em; margin-left: 15em" class="img-fluid"
@@ -44,12 +45,18 @@
                                 <p>Profil</p>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light text-small shadow">
+                                <li><a class="dropdown-item" href="/profil">{{ user.get_username }}</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/accounts/login">Zaloguj się</a></li>
+                                <li><a class="dropdown-item" href="/registration">Zarejestruj się</a></li>
                                 <li><a class="dropdown-item" href="/profil">Profil</a></li>
                                 <li><a class="dropdown-item" href="/zamowienia">Zamówienia</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Wyloguj</a></li>
+                                <li><a class="dropdown-item" href="/logout">Wyloguj</a></li>
                             </ul>
                         </div>
                 </div>
@@ -71,6 +78,7 @@
         </div>
     </div>
 </nav>
+
 
 <nav class="navbar navbar-expand-lg navbar-light shadow">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -177,7 +185,7 @@
 
                     <div class="form-outline form-white mb-4">
                         <input type="email" id="form5Example2" class="form-control" placeholder="Podaj e-mail"/>
-                        <button type="submit" class="btn btn-search">Subskrubj</button>
+                        <button type="submit" class="btn btn-search">Subskrybuj</button>
                     </div>
 
                 </div>
