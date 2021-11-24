@@ -90,6 +90,7 @@ if DEBUG:
             os.path.join(BASE_DIR, 'static')]
 else:
         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 USER_AGENTS_CACHE = 'default'
