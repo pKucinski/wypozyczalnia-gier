@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, update_session_auth_hash
 from django.http import HttpResponseRedirect
-from django.shortcuts import  render, redirect
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SignUpForm
@@ -18,26 +18,28 @@ from .models import Person
 def index(request):
     return render(request, 'index.html')
 
+
 def login_page(request):
     return render(request, 'registration/login.html')
 
+
 def signup(request):
-	if request.method == 'POST':
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			user.refresh_from_db()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
 
-			user.save()
-			raw_password = form.cleaned_data.get('password1')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
 
-			user = authenticate(username=user.username, password=raw_password)
-			login(request, user)
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
 
-			return redirect('/')
-	else:
-		form = SignUpForm()
-	return render(request, 'registration/registration.html/', {'form': form})
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/registration.html/', {'form': form})
 
 
 def change_password(request):
@@ -56,6 +58,7 @@ def change_password(request):
         'form': form
     })
 
+
 def logout_request(request):
     logout(request)
     return HttpResponseRedirect('/')
@@ -63,6 +66,7 @@ def logout_request(request):
 
 def faq(request):
     return render(request, 'faq.html')
+
 
 def haslo_view(request):
     return render(request, 'haslo.html')
@@ -75,11 +79,7 @@ def oders(request):
 def profile(request):
     return render(request, 'profil.html')
 
+
 def profileDetail(request):
-    userDetails=Person.objects.all()
-    return render(request,'profil.html',{'userDetails':userDetails})
-
-
-
-
-
+    userDetails = Person.objects.all()
+    return render(request, 'profil.html', {'userDetails': userDetails})
