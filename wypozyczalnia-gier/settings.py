@@ -20,8 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'cloudinary'
-    'products'
+    'cloudinary',
+    'products',
 
 ]
 
@@ -87,7 +87,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Delete if local
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = ['static']
 
