@@ -8,4 +8,4 @@ class Person(models.Model):
     street = models.CharField(max_length=50)
     numberOfHouse = models.CharField(max_length=10)
     postCode = models.CharField(max_length=6)
-    city = models.CharField(max_length=6)
+    city = models.CharField(max_length=20)
