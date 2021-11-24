@@ -8,19 +8,23 @@
         <div class="col-8 m-2" style="background-color: white;">
             <h3 class="pt-2">Profil</h3>
             <hr/>
-            <h5>Imię:</h5>
-            <h5>Nazwisko:</h5>
-            <h5>E-mail:</h5>
-            <h5>Ulica</h5>
-            <h5>Numer domu/mieszkania:</h5>
-            <h5>kod pocztowy:</h5>
-            <h5>Miasto:</h5>
-
+            {% for data in userDetails %}
+            <h5>Imię: {{data.first_name}}</h5>
+            <h5>Nazwisko: {{data.last_name}}</h5>
+            <h5>E-mail: {{data.email}}</h5>
+            <h5>Ulica: {{data.street}}</h5>
+            <h5>Numer domu/mieszkania: {{data.numberOfHouse}}</h5>
+            <h5>kod pocztowy: {{data.postCode}}</h5>
+            <h5>Miasto: {{data.city}}</h5>
+            {% endfor %}
             <button type="submit" class="m-3 btn btn-search">Zmień Dane</button>
+
 
         </div>
         <div id="profile-list" class="col-3 m-2"style="background-color: white;">
            <ul>
+               <a href="/"><li>Strona główna</li></a>
+               <hr/>
                <a href="/profil"><li>Profil</li></a>
                <hr/>
                <a href="/haslo"><li>Zmień hasło</li></a>
@@ -33,4 +37,4 @@
     </div>
 </div>
 
-    {% endblock %}
+{% endblock %}
