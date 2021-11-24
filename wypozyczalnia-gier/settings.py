@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['dice-play.herokuapp.com', 'diceplay-test.herokuapp.com', '127.0.0.1', 'localhost', 'diceplay.xyz', 'www.diceplay.xyz']
+ALLOWED_HOSTS = ['dice-play.herokuapp.com', '127.0.0.1', 'localhost', 'diceplay.xyz', 'www.diceplay.xyz']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -85,10 +85,16 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+#Delete if local
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = ['static']
+
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = 'media'
+
 USER_AGENTS_CACHE = 'default'
 
 
