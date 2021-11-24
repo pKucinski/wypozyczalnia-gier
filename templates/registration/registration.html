@@ -4,39 +4,49 @@
 {% block body %}
 {% load static %}
 
-<div class="loginpage">
-    <div class="column" id="leftpage">
-        <h1 class="display-3">Zarejestruj się!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <h3 class="pt-2">Zarejestruj się!</h3>
         <div class="container">
-
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-            <button type="submit" class="login-button">Register</button>
-    </form>
+                <button type="submit" class="login-button">Zarejestruj się</button>
+            </form>
         </div>
 
     </div>
-     <div class="column" id="rightpage">
-        <h2>Masz już konto? Zaloguj się!</h2>
-            <a href="{% url 'login' %}"><input type="submit" class="login-button" id="goToRegistrationButton" value="Zaloguj się" /></a>
+     <div class="col">
+        <h2 class="d-flex justify-content-center">Masz już konto? Zaloguj się!</h2>
+            <a href="{% url 'login' %}"><input type="submit" class="login-button" value="Zaloguj się" /></a>
 
         <div class="container">
-            <p><h3>Dlaczego warto mieć konto w DicePlay</h3></p>
-            <div class="registration_right_page_login">
-                <li class="nav-item">
-                    <img src="{% static 'img/basket.png'%}" class="registration_page_img" alt="...">Aby móc realizować zamówienia
-                </li>
-                <li class="nav-item">
-                    <img src="{% static 'img/writing-icon.png'%}" class="registration_page_img" alt="...">Aby recenzować produkty
-                </li>
-                <li class="nav-item">
-                    <img src="{% static 'img/last_order.png'%}" class="registration_page_img" alt="...">Aby sprawdzić poprzednie zamówienia
-                </li>
-
-            </div>
+            <div id="profile-list"  class="col-5 m-2"style="background-color: white;">
+             <ul>
+                 <a href="/"><li>Strona główna</li></a>
+                 <hr/>
+                 <a href="/profil"><li>Profil</li></a>
+                 <hr/>
+                 <a href="/haslo"><li>Zmień hasło</li></a>
+                 <hr/>
+                 <a href="/zamowienia"><li>Zamówienia</li></a>
+                 <hr/>
+                 <a href="/logout"><li>Wyloguj</li></a>
+             </ul>
+        </div>
 
         </div>
+    </div>
+
+</div>
+    <div class="d-flex justify-content-around">
+          <div class="p-2"><h3>Dlaczego warto mieć konto w DicePlay?</h3></div>
+    </div>
+    <div class="d-flex justify-content-around">
+          <div class="p-2"><img src="{% static 'img/basket.png'%}" class="registration_page_img" alt="...">Aby móc realizować zamówienia</div>
+          <div class="p-2"><img src="{% static 'img/writing-icon.png'%}" class="registration_page_img" alt="...">Aby recenzować produkty</div>
+          <div class="p-2"><img src="{% static 'img/last_order.png'%}" class="registration_page_img" alt="...">Aby sprawdzić poprzednie zamówienia</div>
     </div>
 </div>
 {% endblock %}
