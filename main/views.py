@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
@@ -11,12 +12,12 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
-from .models import Person
-
+from .models import UserProfile, Product, Categories
 
 def index(request):
-    return render(request, 'index.html')
+    products = Product.objects.all().order_by("-id")
+    return render(request, 'index.html', {'products': products})
+
 
 
 def login_page(request):
@@ -41,7 +42,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/registration.html/', {'form': form})
 
-
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -67,19 +68,16 @@ def logout_request(request):
 def faq(request):
     return render(request, 'faq.html')
 
-
-def haslo_view(request):
+@login_required
+def password_view(request):
     return render(request, 'haslo.html')
 
-
-def oders(request):
+@login_required
+def orders(request):
     return render(request, 'zamowienia.html')
 
 
+@login_required
 def profile(request):
-    return render(request, 'profil.html')
-
-
-def profileDetail(request):
-    userDetails = Person.objects.all()
+    userDetails = UserProfile.objects.filter(user__username=request.user)
     return render(request, 'profil.html', {'userDetails': userDetails})

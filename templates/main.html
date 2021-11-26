@@ -46,17 +46,17 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light text-small shadow">
                                 {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="/profil">{{ user.get_username }}</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-
+                                    <li><a class="dropdown-item" href="/profil">{{ user.get_username }}</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="/accounts/login">Zaloguj się</a></li>
+                                    <li><a class="dropdown-item" href="/registration">Zarejestruj się</a></li>
                                 {% endif %}
-
-                                <li><a class="dropdown-item" href="/accounts/login">Zaloguj się</a></li>
-                                <li><a class="dropdown-item" href="/registration">Zarejestruj się</a></li>
                                 {% if user.is_authenticated %}
                                 <li><a class="dropdown-item" href="/profil">Profil</a></li>
+                                <li><a class="dropdown-item" href="/haslo">Zmień hasło</a></li>
                                 <li><a class="dropdown-item" href="/zamowienia">Zamówienia</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -107,7 +107,7 @@
                 <a class="nav-link category" href="#">Gry strategiczne</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category" href="#">Gry kooperacujne</a>
+                <a class="nav-link category" href="#">Gry kooperacyjne</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link category" href="#">Gry RPG</a>

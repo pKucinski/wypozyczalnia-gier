@@ -27,6 +27,7 @@ a:hover {
     padding-left: 5em;
     padding-right: 15em;
 }
+
 input[type="text"], input[type="password"],input[type="email"]{
     width: 100%;
     padding: 12px 20px;
@@ -141,12 +142,6 @@ border-radius: 15px;
 .registration_right_page_login{
     padding:10px;
 }
-
-.nav-item{
-margin-bottom:5%;
-}
-
-
 
 
 /* INDEX */

@@ -9,16 +9,25 @@
             <h3 class="pt-2">Profil</h3>
             <hr/>
             {% for data in userDetails %}
-            <h5>Imię: {{data.first_name}}</h5>
-            <h5>Nazwisko: {{data.last_name}}</h5>
-            <h5>E-mail: {{data.email}}</h5>
-            <h5>Ulica: {{data.street}}</h5>
-            <h5>Numer domu/mieszkania: {{data.numberOfHouse}}</h5>
-            <h5>kod pocztowy: {{data.postCode}}</h5>
-            <h5>Miasto: {{data.city}}</h5>
-            {% endfor %}
-            <button type="submit" class="m-3 btn btn-search">Zmień Dane</button>
+            <div class="row">
+                <div class="col">
+                    <h3>Dane</h3>
+                    <h5>Imię: {{user.first_name}}</h5>
+                    <h5>Nazwisko: {{user.last_name }}</h5>
+                    <h5>E-mail: {{data.user.email}}</h5>
+                    <h5>Telefon: {{data.phone}}</h5>
+                </div>
+                <div class="col">
+                    <h3>Adres</h3>
+                    <h5>Ulica: {{data.street}}</h5>
+                    <h5>Numer domu/mieszkania: {{data.numberOfHouse}}</h5>
+                    <h5>kod pocztowy: {{data.postCode}}</h5>
+                    <h5>Miasto: {{data.city}}</h5>
+                </div>
+            </div>
 
+            <button type="submit" class="m-3 btn btn-search">Zmień Dane</button>
+                 {% endfor %}
 
         </div>
         <div id="profile-list" class="col-3 m-2"style="background-color: white;">
