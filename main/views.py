@@ -11,7 +11,7 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserProfile, Product, Categories
 
 def index(request):
@@ -67,6 +67,22 @@ def logout_request(request):
 
 def faq(request):
     return render(request, 'faq.html')
+
+
+def show_product(request, id):
+    show_product = get_object_or_404(Product, pk=id)
+    amount = show_product.amount
+    if amount == 0:
+        text = "Obecnie nie mamy wolnych egzemplarzy do wypożyczenia"
+    elif amount == 1:
+        text = "Została ostatnia sztuka!"
+    elif amount > 1:
+        text = "Dostępne " + str(show_product.amount) + " szt."
+
+    show_product.amount = text
+
+    return render(request, 'produkt.html', {'show_product': show_product})
+
 
 @login_required
 def password_view(request):

@@ -1,7 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -18,13 +17,6 @@ class UserProfile(models.Model):
           return "%s's profile" % self.user
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-       profile, created = UserProfile.objects.get_or_create(user=instance)
-
-    post_save.connect(create_user_profile, sender=User)
-
-
 class Categories(models.Model):
     category_name = models.CharField(max_length=50)
 
@@ -33,7 +25,6 @@ class Categories(models.Model):
 
 
 class Product(models.Model):
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, blank=False)
     description = models.TextField(blank=False)
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=False)
