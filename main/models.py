@@ -2,6 +2,8 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from djrichtextfield.models import RichTextField
+
 
 
 class UserProfile(models.Model):
@@ -26,7 +28,8 @@ class Categories(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=50, blank=False)
-    description = models.TextField(blank=False)
+    description = RichTextField(blank=False)
+    age = models.DecimalField(max_digits=2, decimal_places=0, blank=False, default=3)
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=False)
     amount = models.DecimalField(max_digits=6, decimal_places=0, default=0)
     buy_counter = models.DecimalField(max_digits=6, decimal_places=0, default=0, editable=False)
