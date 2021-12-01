@@ -1,10 +1,10 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, update_session_auth_hash
+
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.db.models import Sum
+from . import form
 from .forms import SignUpForm
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -12,7 +12,8 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import UserProfile, Product, Categories
+from .models import UserProfile, Product, Categories, Basket
+
 
 def index(request):
     products = Product.objects.all().order_by("-id")
@@ -68,6 +69,9 @@ def logout_request(request):
 def faq(request):
     return render(request, 'faq.html')
 
+def koszyk(request):
+    return render(request, 'koszyk.html')
+
 
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
@@ -83,6 +87,11 @@ def show_product(request, id):
 
     return render(request, 'produkt.html', {'show_product': show_product})
 
+def show_basket(request):
+    show_basket = Basket.objects.all().order_by("id")
+    return render(request, 'koszyk.html', {'show_basket': show_basket})
+
+
 
 @login_required
 def password_view(request):
@@ -97,3 +106,4 @@ def orders(request):
 def profile(request):
     userDetails = UserProfile.objects.filter(user__username=request.user)
     return render(request, 'profil.html', {'userDetails': userDetails})
+
