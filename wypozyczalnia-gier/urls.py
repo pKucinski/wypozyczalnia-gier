@@ -22,7 +22,7 @@ urlpatterns = [
     path("registration/", signup, name="signup"),
     path("logout/", logout_request),
     path('', index),
-    path('/<str:productname>/', add_to_basket,name="insertproduct"),
+    path('<str:productname>/', add_to_basket,name="insertproduct"),
     url(r'^haslo/$', views.change_password, name='change_password'),
 #https://www.youtube.com/watch?v=rMU-falr6u0
 
