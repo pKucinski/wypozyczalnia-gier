@@ -8,10 +8,5 @@ class SignUpForm(UserCreationForm):
         model = User
         email = forms.CharField()
 
-<<<<<<< Updated upstream
-        fields = ('username', 'email', 'password1', 'password2', )
-=======
         fields = ('username', 'email', 'password1', 'password2', )
 
-
->>>>>>> Stashed changes

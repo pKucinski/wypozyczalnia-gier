@@ -83,8 +83,7 @@ def show_product(request, id):
 
     return render(request, 'produkt.html', {'show_product': show_product})
 
-<<<<<<< Updated upstream
-=======
+
 def show_basket(request):
     show_basket = Basket.objects.all().order_by("id")
     return render(request, 'koszyk.html', {'show_basket': show_basket})
@@ -92,7 +91,7 @@ def show_basket(request):
 def add_to_basket(request,productname):
     getProductName=get_object_or_404(Product, title=productname)
 
->>>>>>> Stashed changes
+
 
     if request.method=="GET":
         return render(request,"",{'data':getProductName})
