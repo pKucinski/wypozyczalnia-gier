@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 m-3" style="background-color: white;">
+        <table class="table" id="basketTable">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Image</th>
+              <th scope="col">Nazwa produktu</th>
+              <th scope="col">ilość</th>
+              <th scope="col">cena</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for data in show_basket %}
+            <tr>
+
+              <th scope="row">{{data.id}}</th>
+              <td><img src="{{ data.product.image.url }}" class="d-block w-100 px-5" alt="..."></td>
+              <td>{{data.product.title}}</td>
+              <td>{{data.amount}}</td>
+              <td>{{data.product.price}}zł</td>
+
+            </tr>
+          {% endfor %}
+
+          <td><hr/></td>
+          <td><hr/></td>
+          <td><hr/></td>
+          <td>SUMA:<span id="sumOfProducts"></span></td>
+
+          <td></td>
+
+          </tbody>
+
+        </table>
+
+        <input type="button" class="float-md-end btn btn-success"  value="Zamów">
+
+         </div>
+      <div class="col-2 m-2" style="background-color: white;">
+
+      </div>
+        <div id="profile-list" class="col-3 m-2"style="background-color: white;">
+           <ul>
+               <a href="/"><li>Strona główna</li></a>
+               <hr/>
+               <a href="/profil"><li>Profil</li></a>
+               <hr/>
+               <a href="/haslo"><li>Zmień hasło</li></a>
+               <hr/>
+               <a href="/zamowienia"><li>Zamówienia</li></a>
+               <hr/>
+               <a href="/logout"><li>Wyloguj</li></a>
+           </ul>
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

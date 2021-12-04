@@ -40,7 +40,13 @@
       <a href="produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-100" alt="..."></a>
       <h5 class="card-title mt-2"><a href="produkt/{{product.id}}">{{product.title}}</a></h5>
       <p class="card-text">{{product.price}}/dzień</p>
+<<<<<<< Updated upstream
       <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
+=======
+      <div class="add-cart"><a href="{% url 'insertproduct' productname=product%}"><i class="fas fa-cart-plus"></i>
+        </a>
+      </div>
+>>>>>>> Stashed changes
   </div>
 </div>
 {% endfor %}
