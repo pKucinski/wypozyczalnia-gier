@@ -92,6 +92,13 @@ def show_basket(request):
     return render(request, 'koszyk.html', {'show_basket': show_basket})
 
 
+def add_to_basket(request,productname):
+    getProductName=get_object_or_404(Product, title=productname)
+
+
+    if request.method=="GET":
+        return render(request,"",{'data':getProductName})
+
 
 @login_required
 def password_view(request):
