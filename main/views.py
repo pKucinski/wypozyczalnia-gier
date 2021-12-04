@@ -12,12 +12,15 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import UserProfile, Product, Categories, Basket
+from .models import UserProfile, Product, Categories, Basket, Rating
 
 
 def index(request):
     products = Product.objects.all().order_by("-id")
     return render(request, 'index.html', {'products': products})
+
+
+
 
 
 
@@ -73,11 +76,19 @@ def koszyk(request):
     return render(request, 'koszyk.html')
 
 
+def products_category(request, id):
+    category = get_object_or_404(Categories, pk=id)
+    products = Product.objects.all
+    return render(request, 'kategoria.html', {"category": category, "products": products})
+
+
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
+    rating = Rating.objects.all()
+
     amount = show_product.amount
     if amount == 0:
-        text = "Obecnie nie mamy wolnych egzemplarzy do wypożyczenia"
+        text = False
     elif amount == 1:
         text = "Została ostatnia sztuka!"
     elif amount > 1:
@@ -85,7 +96,8 @@ def show_product(request, id):
 
     show_product.amount = text
 
-    return render(request, 'produkt.html', {'show_product': show_product})
+    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating})
+
 
 def show_basket(request):
     show_basket = Basket.objects.all().order_by("id")

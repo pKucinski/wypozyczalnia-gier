@@ -3,12 +3,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from main import views
-from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket
+from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket, products_category
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/', login_page),
+    path('kategoria/<int:id>', products_category),
 
     path('koszyk/', show_basket),
     path('faq/', faq),
@@ -19,7 +20,5 @@ urlpatterns = [
     path("logout/", logout_request),
     path('', index),
     url(r'^haslo/$', views.change_password, name='change_password'),
-
-
-
+    path('djrichtextfield/', include('djrichtextfield.urls'))
 ]

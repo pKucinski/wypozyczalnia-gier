@@ -3,28 +3,73 @@
 {% block body %}
 {% load static %}
 
-<div class="container m-5" style="background-color:#fff" >
+<div class="container my-5">
     <div class="row">
-        <div class="col-6">
-            <img src="{{ show_product.image.url }}" class="d-block w-100 px-5" alt="...">
+        <div class="col-8 py-4 border border-2 rounded" style="background-color:#fff" >
+            <div class="row">
+                <div class="col-7">
+                    <img src="{{ show_product.image.url }}" class="d-block w-100 px-5" alt="...">
+                </div>
+                <div class="col pt-5" style="background-color:#fff">
+                    <h2>{{show_product.title}}</h2>
+                    <h5>ocena <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half"></i></h5>
+                    <hr>
+                    <p class="pt-2">Kategoria: {{show_product.category}}
+                    <p>
+                    <p class="">Wiek: 3+</p>
+                </div>
+            </div>
+            <div class="mx-3">
+                <div class="py-1">
+                    <h3 class="pt-5">Opis</h3>
+                    <hr/>
+                    {{show_product.description | safe}}
+                </div>
+
+                <div class="py-3">
+                    <h3 class="pt-5">Oceny</h3>
+                    <hr/>
+                    {% for rate in rating %}
+
+                    {% if show_product.id == rate.product.id %}
+                    <div class="">
+                        <h5>{{rate.user.username}} ({{rate.created_on}})</h5>
+                        <p>{{rate.text}}</p>
+                    </div>
+
+                    {% else %}
+                    <p>Brak ocen, skomentuj jako pierwszy!</p>
+                    {% endif %}
+
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="col pt-3">
-            <h2>{{show_product.title}}</h2>
-            <h4 class="pt-3">{{show_product.amount}}</h4>
-            <h4 class="pt-3">Kategoria: {{show_product.category}}</h4>
-            <h4 class="pt-3">Wiek: 3+</h4>
-        </div>
-        <div class="col mt-5 pt-5">
-            <h2 class="">{{show_product.price}}/dzień</h2>
-            <button type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
+
+
+        <div onload="whenDelivery()" class="col mx-5 p-5 border border-2 rounded mb-auto" style="background-color:#fff">
+            {% if show_product.amount %}
+            <h2>{{show_product.price}}/dzień</h2>
+            <p class="text-success mb-4"><i class="far fa-check-circle"></i> {{show_product.amount}}</p>
+            <p><i class="fas fa-undo-alt"></i> Zwrot w dowolnej chwili</p>
+            <p><i class="fas fa-boxes"></i> Zapłać raz za wysyłkę</p>
+            <p><i class="far fa-clock"></i> Nieograniczony czas zwrotu</p>
+            <p><i class="far fa-smile"></i> Gwarantowan zabawa</p>
+            <i class="fas fa-truck float-start pt-1"></i>
+            <div class="float-start mx-1" id="deliveryInfo"></div>
+
+            <button type="button" class="btn btn-success btn-lg btn-block mt-4 "><i class="fas fa-cart-plus"></i> Dodaj
+                do koszyka
+            </button>
+            {% else %}
+            <p class="text-secondary"><i class="far fa-times-circle"></i> Produkt niedostpępny</p>
+            <button type="button" class="btn btn-secondary btn-lg btn-block"> Poszukaj innych gier</button>
+            {% endif %}
         </div>
     </div>
 
-    <div class="py-3">
-        <h3 class="pt-5">Opis</h3>
-            <hr/>
-        {{show_product.description}}
-    </div>
+
 </div>
 
-    {% endblock %}
+{% endblock %}

@@ -5,7 +5,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from djrichtextfield.models import RichTextField
 
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
@@ -19,11 +18,13 @@ class UserProfile(models.Model):
           return "%s's profile" % self.user
 
 
+
+
 class Categories(models.Model):
     category_name = models.CharField(max_length=50)
-
     def __str__(self):
-        return self.category_name
+          return self.category_name
+
 
 
 class Product(models.Model):
@@ -38,6 +39,18 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(User, blank=False,  on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.TextField(default="", blank=True)
+    stars = models.PositiveSmallIntegerField(default=5)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
+
 
 class Basket(models.Model):
     id = models.AutoField(primary_key=True)

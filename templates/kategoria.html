@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block title %} WypGier {% endblock %}
+{% block body %}
+{% load static %}
+
+
+
+<div class="container">
+  <div class="row recommended">
+            <h3 class="pt-5">{{category.category_name}}</h3>
+            <hr/>
+{% for product in products %}
+      {% if category.id == product.category.id %}
+<div class="card col-4 col-lg-3" style="width: 18rem;">
+  <div class="card-body">
+      <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-100" alt="..."></a>
+      <h5 class="card-title mt-2"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
+      <p class="card-text">{{product.price}}/dzień</p>
+      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
+  </div>
+</div>
+      {% endif %}
+{% endfor %}
+</div>
+</div>
+
+
+{% endblock %}
+
