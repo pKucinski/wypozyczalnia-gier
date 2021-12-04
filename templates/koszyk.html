@@ -6,7 +6,11 @@
 <div class="container">
   <div class="row">
     <div class="col-6 m-3" style="background-color: white;">
+
         <table class="table">
+
+        <table class="table" id="basketTable">
+
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -24,7 +28,11 @@
               <td><img src="{{ data.product.image.url }}" class="d-block w-100 px-5" alt="..."></td>
               <td>{{data.product.title}}</td>
               <td>{{data.amount}}</td>
+
               <td>{{data.price}}</td>
+
+              <td>{{data.product.price}}zł</td>
+
 
             </tr>
           {% endfor %}
@@ -32,12 +40,23 @@
           <td><hr/></td>
           <td><hr/></td>
           <td><hr/></td>
+
           <td>SUMA:</td>
+
+          <td>SUMA:<span id="sumOfProducts"></span></td>
+
 
           <td></td>
 
           </tbody>
+
         </table>
+
+
+
+        </table>
+
+        <input type="button" class="float-md-end btn btn-success"  value="Zamów">
 
          </div>
       <div class="col-2 m-2" style="background-color: white;">

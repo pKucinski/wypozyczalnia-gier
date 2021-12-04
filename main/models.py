@@ -38,6 +38,7 @@ class Product(models.Model):
     image = CloudinaryField('image')
 
     def __str__(self):
+
         return self.title
 
 
@@ -52,10 +53,14 @@ class Rating(models.Model):
         return self.text
 
 
+
 class Basket(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
+
     amount = models.DecimalField(max_digits=6, decimal_places=0, default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=False,default=0)
     def __str__(self):
         return "%s's basket" % self.id
+
+
