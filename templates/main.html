@@ -193,10 +193,13 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <h5 class="text-uppercase mb-4">Zapisz się do newslettera i bądź na bieżąco z nowościami</h5>
 
-                    <div class="form-outline form-white mb-4">
-                        <input type="email" id="form5Example2" class="form-control" placeholder="Podaj e-mail"/>
-                        <button type="submit" class="btn btn-search">Subskrybuj</button>
-                    </div>
+                    <form class="d-flex pt-3" METHOD="post" action="{% url 'sendmailnow' %}">
+                        {% csrf_token %}
+                        <div class="form-outline form-white mb-4">
+                            <input type="email" id="form5Example2" class="form-control" placeholder="Podaj e-mail" name="sendemailtome"/>
+                            <button type="submit" class="btn btn-search">Subskrybuj</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
