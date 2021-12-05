@@ -5,81 +5,89 @@
 
 <div class="container">
 
-  <div class="row" onload="updateSubTotal;countVat">
-    <div class="col-6 m-3" style="background-color: white;">
-        <table class="table" id="basketTable">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Image</th>
-              <th scope="col">Nazwa produktu</th>
-              <th scope="col">ilość</th>
-              <th scope="col">cena</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for data in show_basket %}
-            <tr>
+  <div class="row">
+        <div class="col-8 m-3 p-3" style="background-color: white;">
+            <table class="table" id="basketTable">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" >Nazwa produktu</th>
+                    <th scope="col" class='col-sm-1'>cena</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in show_basket %}
+                {% if data.user.id == user.id %}
+                {% for product in data.product.all %}
+                <tr>
+                    <td><img src="{{ product.image.url }}" class="d-block w-50 px-5" alt="..."></td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.price }} zł</td>
 
-              <th scope="row">{{data.id}}</th>
-              <td><img src="{{ data.product.image.url }}" class="d-block w-100 px-5" alt="..."></td>
-              <td>{{data.product.title}}</td>
-              <td>{{data.amount}}</td>
-              <td>{{data.product.price}}zł</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
 
-            </tr>
-          {% endfor %}
+                <td>
+                    <hr/>
+                </td>
 
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>SUMA:</td>
+                <td>SUMA:</td>
 
-          <td><span id="sumOfProducts"></span></td>
+                <td><span id="sumOfProducts"></span></td>
 
-          </tbody>
+                </tbody>
 
-        </table>
+            </table>
 
-         </div>
+            <input type="button" class="float-md-end btn btn-success" value="Zamów">
 
-
-        <div id="profile-list" class="col-3 m-2" style="background-color: white;">
-           <ul>
-               <a href="/"><li>Strona główna</li></a>
-               <hr/>
-               <a href="/profil"><li>Profil</li></a>
-               <hr/>
-               <a href="/haslo"><li>Zmień hasło</li></a>
-               <hr/>
-               <a href="/zamowienia"><li>Zamówienia</li></a>
-               <hr/>
-               <a href="/logout"><li>Wyloguj</li></a>
-               <hr/>
-               <p style="font-weight: bold; font-size: large;">Podsumowanie:</p>
-               <p class="pt-2">Wartość zamówienia: <span id="sumOfProducts2"></span></p>
-               <p>W tym vat: <span id="vat"></span></p>
-               <p>Kwota dostawy: 0.00zł</p>
-               <p class="text-success">Do zapłaty: <span id="toPay" ></span></p>
-
-               <p><input type="button" class="float-md-start btn btn-success mt-5"  value="Zamów"></p>
-           </ul>
         </div>
 
-      <hr/>
-      <div class="d-flex justify-content-around">
-          <div class="p-2"><i class="fas fa-undo-alt"></i> Zwrot w dowolnej chwili</div>
-          <div class="p-2"><i class="fas fa-boxes"></i> Zapłać raz za wysyłkę</div>
-          <div class="p-2"><i class="far fa-clock"></i> Nieograniczony czas zwrotu</div>
-          <div class="p-2"><i class="far fa-smile"></i> Gwarantowan zabawa</div>
-          <div class="p-2"><i class="fas fa-truck float-start pt-1"></i>
-            <span class="float-start mx-1 " id="deliveryInfo"></span></div>
-    </div>
+        <div id="profile-list" class="col-3 m-2">
+            <div class="py-3" style="background-color: white;">
+                <ul>
+                    <a href="/">
+                        <li>Strona główna</li>
+                    </a>
+                    <hr/>
+                    <a href="/profil">
+                        <li>Profil</li>
+                    </a>
+                    <hr/>
+                    <a href="/haslo">
+                        <li>Zmień hasło</li>
+                    </a>
+                    <hr/>
+                    <a href="/zamowienia">
+                        <li>Zamówienia</li>
+                    </a>
+                    <hr/>
+                    <a href="/logout">
+                        <li>Wyloguj</li>
+                    </a>
+                </ul>
+            </div>
+
+
+            <div class="my-3 py-3" style="background-color: white;">
+                <ul>
+                    <p style="font-weight: bold; font-size: large;">Podsumowanie:</p>
+                    <p class="pt-2">Wartość zamówienia: <span id="sumOfProducts2"></span></p>
+                    <p>W tym vat: <span id="vat"></span></p>
+                    <p>Kwota dostawy: 0.00zł</p>
+                    <p class="text-success">Do zapłaty: <span id="toPay"></span></p>
+
+                    <p><input type="button" class="float-md-start btn btn-success " value="Zamów"></p>
+                    <br>
+                </ul>
+            </div>
+
+        </div>
 
     </div>
-  </div>
-
-
+</div>
 
 
 {% endblock %}

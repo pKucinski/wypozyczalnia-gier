@@ -13,6 +13,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserProfile, Product, Categories, Basket, Rating
+from django.db.models import Avg
 
 
 def index(request):
@@ -107,6 +108,10 @@ def show_basket(request):
 
 def add_to_basket(request,productname):
     getProductName=get_object_or_404(Product, title=productname)
+
+    if request.method=="GET":
+        return render(request,"index.html",{'data':getProductName})
+
 
 
     return render(request,"index.html",{'data':getProductName})
