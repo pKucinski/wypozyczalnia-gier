@@ -4,14 +4,15 @@
 {% load static %}
 
 <div class="container">
-    <div class="row">
+
+  <div class="row">
         <div class="col-8 m-3 p-3" style="background-color: white;">
             <table class="table" id="basketTable">
                 <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">Nazwa produktu</th>
-                    <th scope="col">cena</th>
+                    <th scope="col" >Nazwa produktu</th>
+                    <th scope="col" class='col-sm-1'>cena</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,15 +32,10 @@
                 <td>
                     <hr/>
                 </td>
-                <td>
-                    <hr/>
-                </td>
-                <td>
-                    <hr/>
-                </td>
-                <td>SUMA:<span id="sumOfProducts"></span></td>
 
-                <td></td>
+                <td>SUMA:</td>
+
+                <td><span id="sumOfProducts"></span></td>
 
                 </tbody>
 
@@ -48,6 +44,7 @@
             <input type="button" class="float-md-end btn btn-success" value="Zamów">
 
         </div>
+
 
         <div id="profile-list" class="col-3 m-2">
             <div class="py-3" style="background-color: white;">

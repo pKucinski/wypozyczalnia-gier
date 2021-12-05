@@ -82,6 +82,15 @@ def products_category(request, id):
     products = Product.objects.all
     return render(request, 'kategoria.html', {"category": category, "products": products})
 
+def show_search(request):
+    if request.method=="POST":
+        searched = request.POST['searched']
+        product=Product.objects.filter(title__contains=searched)
+        product_count=Product.objects.filter(title__contains=searched).count()
+
+        return render(request, "search.html", {'searched':searched,'product':product,'product_count':product_count})
+    else:
+        return render(request, "search.html", {})
 
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
