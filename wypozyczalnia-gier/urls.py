@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from main import views
-from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket, products_category
-
+from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, \
+    show_basket, products_category, change_password
 
 from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket, add_to_basket, change_password
 

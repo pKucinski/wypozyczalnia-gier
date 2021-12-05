@@ -49,28 +49,45 @@
 
         </div>
 
-        <div id="profile-list" class="col-3 m-2" style="background-color: white;">
-            <ul>
-                <a href="/">
-                    <li>Strona główna</li>
-                </a>
-                <hr/>
-                <a href="/profil">
-                    <li>Profil</li>
-                </a>
-                <hr/>
-                <a href="/haslo">
-                    <li>Zmień hasło</li>
-                </a>
-                <hr/>
-                <a href="/zamowienia">
-                    <li>Zamówienia</li>
-                </a>
-                <hr/>
-                <a href="/logout">
-                    <li>Wyloguj</li>
-                </a>
-            </ul>
+        <div id="profile-list" class="col-3 m-2">
+            <div class="py-3" style="background-color: white;">
+                <ul>
+                    <a href="/">
+                        <li>Strona główna</li>
+                    </a>
+                    <hr/>
+                    <a href="/profil">
+                        <li>Profil</li>
+                    </a>
+                    <hr/>
+                    <a href="/haslo">
+                        <li>Zmień hasło</li>
+                    </a>
+                    <hr/>
+                    <a href="/zamowienia">
+                        <li>Zamówienia</li>
+                    </a>
+                    <hr/>
+                    <a href="/logout">
+                        <li>Wyloguj</li>
+                    </a>
+                </ul>
+            </div>
+
+
+            <div class="my-3 py-3" style="background-color: white;">
+                <ul>
+                    <p style="font-weight: bold; font-size: large;">Podsumowanie:</p>
+                    <p class="pt-2">Wartość zamówienia: <span id="sumOfProducts2"></span></p>
+                    <p>W tym vat: <span id="vat"></span></p>
+                    <p>Kwota dostawy: 0.00zł</p>
+                    <p class="text-success">Do zapłaty: <span id="toPay"></span></p>
+
+                    <p><input type="button" class="float-md-start btn btn-success " value="Zamów"></p>
+                    <br>
+                </ul>
+            </div>
+
         </div>
 
     </div>

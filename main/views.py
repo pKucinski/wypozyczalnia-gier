@@ -53,7 +53,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
+            update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('change_password')
         else:
@@ -113,6 +113,8 @@ def add_to_basket(request,productname):
         return render(request,"index.html",{'data':getProductName})
 
 
+
+    return render(request,"index.html",{'data':getProductName})
 
 
 @login_required
