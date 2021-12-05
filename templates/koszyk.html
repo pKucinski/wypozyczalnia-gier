@@ -5,7 +5,7 @@
 
 <div class="container">
 
-  <div class="row">
+  <div class="row" onload="updateSubTotal">
     <div class="col-5 m-3" style="background-color: white;">
         <table class="table" id="basketTable">
           <thead>
@@ -48,7 +48,7 @@
 
 
          </div>
-      <div class="col-3 m-1 pt-5" onload="whenDelivery()" style="background-color: white;">
+      <div class="col-3 m-1 pt-5" onload="whenDelivery" style="background-color: white;">
 
             <p><i class="fas fa-undo-alt"></i> Zwrot w dowolnej chwili</p>
             <p><i class="fas fa-boxes"></i> Zapłać raz za wysyłkę</p>
