@@ -20,8 +20,8 @@
                 {% if data.user.id == user.id %}
                 {% for product in data.product.all %}
                 <tr>
-                    <td><img src="{{ product.image.url }}" class="d-block w-50 px-5" alt="..."></td>
-                    <td>{{ product.title }}</td>
+                    <td><a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-50 px-5" alt="..."></a></td>
+                    <td><a href="/produkt/{{product.id}}">{{ product.title }}</a></td>
                     <td>{{ product.price }} zł</td>
 
                 </tr>
