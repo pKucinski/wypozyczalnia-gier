@@ -13,7 +13,7 @@ function whenDelivery()
     }
 
 }
-updateSubTotal();
+
 
 function updateSubTotal() {
 
@@ -23,5 +23,7 @@ function updateSubTotal() {
             var objCells = myTab.rows.item(i).cells;
             sum+=parseFloat(objCells[4].innerHTML)
         }
-  document.getElementById("sumOfProducts").innerHTML = sum.toFixed(2)+"zł";
+  document.getElementsById("sumOfProducts").innerHTML = sum.toFixed(2)+"zł";
+
+
 }
