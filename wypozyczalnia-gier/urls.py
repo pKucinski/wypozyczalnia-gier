@@ -6,7 +6,7 @@ from main import views
 from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, \
     show_basket, products_category, change_password
 
-from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket, add_to_basket, change_password
+from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, show_basket, add_to_basket, change_password,show_search
 
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
     path('kategoria/<int:id>', products_category),
     url(r'^haslo/$', change_password, name="change_password"),
     path('koszyk/', show_basket),
+    path('search/', show_search, name="search_game"),
     path('faq/', faq),
     path('produkt/<int:id>/', show_product),
     path('zamowienia/', orders),

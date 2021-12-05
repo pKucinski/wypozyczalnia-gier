@@ -13,10 +13,12 @@
       {% if category.id == product.category.id %}
 <div class="card col-4 col-lg-3" style="width: 18rem;">
   <div class="card-body">
-      <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-100" alt="..."></a>
-      <h5 class="card-title mt-2"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
-      <p class="card-text">{{product.price}}/dzień</p>
-      <div class="add-cart"><i class="fas fa-cart-plus"></i></div>
+      <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-150 h-50" alt="..."></a>
+      <h5 class="card-title pt-5"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
+      <span class="card-text" style="position: absolute; bottom: 5%;left: 10%;">{{product.price}}/dzień</span>
+      <div class="add-cart" style="position: absolute; bottom: 5%;right: 10%;">
+           <a href="{% url 'insertproduct' productname=product%}"><i class="fas fa-cart-plus"></i></a>
+      </div>
   </div>
 </div>
       {% endif %}

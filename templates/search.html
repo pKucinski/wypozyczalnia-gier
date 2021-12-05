@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block title %} WypGier {% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <div class="row recommended">
+
+        {% if searched %}
+        <h3 class="pt-5">Szukasz: "{{searched}}" <span class="text-secondary">({{product_count}} wyników)</span></h3>
+                    <hr/>
+            <br/>
+            {% for product in product|slice:"8" %}
+                <div class="card col-4 col-lg-3" style="width: 18rem;">
+                  <div class="card-body">
+                      <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-100 h-50" alt="..."></a>
+
+                      <h5 class="card-title pt-5"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
+
+                      <span class="card-text" style="position: absolute; bottom: 5%;left: 10%;">{{product.price}}/dzień</span>
+
+                      <div class="add-cart" style="position: absolute; bottom: 5%;right: 10%;">
+                        <a href="{% url 'insertproduct' productname=product%}"><i class="fas fa-cart-plus"></i></a>
+                      </div>
+                  </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
