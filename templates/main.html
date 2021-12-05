@@ -31,8 +31,9 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="d-flex pt-3">
-            <input class="form-control me-2" type="search" placeholder="Jakiej gry szukasz?" aria-label="Search">
+        <form class="d-flex pt-3" METHOD="post" action="{% url 'search_game' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Jakiej gry szukasz?" aria-label="Search" name="searched">
             <button class="btn btn-search" type="submit">Szukaj</button>
         </form>
         <div class="row text-center pt-3">
