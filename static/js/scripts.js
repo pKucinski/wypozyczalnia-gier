@@ -1,5 +1,3 @@
-
-
 function updateSubTotal()
 {
   var myTab = document.getElementById('basketTable');

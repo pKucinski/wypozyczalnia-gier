@@ -10,19 +10,22 @@
                     <hr/>
             <br/>
             {% for product in product|slice:"8" %}
-                <div class="card col-4 col-lg-3" style="width: 18rem;">
-                  <div class="card-body">
-                      <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-100 h-50" alt="..."></a>
+<div class="card col-4 col-lg-3" style="width: 18rem;">
 
-                      <h5 class="card-title pt-5"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
-
-                      <span class="card-text" style="position: absolute; bottom: 5%;left: 10%;">{{product.price}}/dzień</span>
-
-                      <div class="add-cart" style="position: absolute; bottom: 5%;right: 10%;">
+            <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="card-img-top d-block w-100"
+                                                  alt="..."></a>
+            <div class="mt-auto p-2">
+                <h5 class="card-title"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
+                <div>
+                    <div class="justify-content-start">
+                        <span class="card-text ">{{product.price}}/dzień</span>
+                    </div>
+                    <div class="add-cart align-text-end p-3">
                         <a href="{% url 'insertproduct' productname=product%}"><i class="fas fa-cart-plus"></i></a>
-                      </div>
-                  </div>
+                    </div>
                 </div>
+            </div>
+        </div>
 
             {% endfor %}
         {% else %}
