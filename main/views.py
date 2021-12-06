@@ -2,9 +2,8 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 
-from django.db.models import Sum
-from . import form
 from .forms import SignUpForm
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -91,6 +90,14 @@ def show_search(request):
         return render(request, "search.html", {'searched':searched,'product':product,'product_count':product_count})
     else:
         return render(request, "search.html", {})
+
+def send_Email(request):
+    if request.method=="POST":
+        sendemailtome = request.POST['sendemailtome']
+    #l:diceplayonline@gmail.com
+    #h:Diceplay1!
+    send_mail('DicePlay - Newsleter','Czesc, Miło nam że zapisałeś się do naszego newsletera!, od teraz będziesz otrzymywał od nas wiadomości z promocjami.  Pozdrawiamy, zespół DicePlay','diceplayonline@gmail.com',[sendemailtome],fail_silently=False)
+    return render(request,'email.html')
 
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
