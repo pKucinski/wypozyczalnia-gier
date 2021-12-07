@@ -37,3 +37,8 @@ function whenDelivery()
     }
 
 }
+
+var myModal = new bootstrap.Modal(document.getElementById("basicExampleModal"), {});
+document.onreadystatechange = function () {
+  myModal.show();
+};

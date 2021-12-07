@@ -1,8 +1,7 @@
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.core.mail import send_mail
+from django.urls import reverse
 
 from .forms import SignUpForm
 from django.contrib.auth import login
@@ -12,16 +11,13 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserProfile, Product, Categories, Basket, Rating
-from django.db.models import Avg
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 
 def index(request):
     products = Product.objects.all().order_by("-id")
     return render(request, 'index.html', {'products': products})
-
-
-
-
 
 
 def login_page(request):
@@ -45,6 +41,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/registration.html/', {'form': form})
+
 
 @login_required
 def change_password(request):
@@ -72,6 +69,7 @@ def logout_request(request):
 def faq(request):
     return render(request, 'faq.html')
 
+
 def koszyk(request):
     return render(request, 'koszyk.html')
 
@@ -81,23 +79,38 @@ def products_category(request, id):
     products = Product.objects.all
     return render(request, 'kategoria.html', {"category": category, "products": products})
 
-def show_search(request):
-    if request.method=="POST":
-        searched = request.POST['searched']
-        product=Product.objects.filter(title__contains=searched)
-        product_count=Product.objects.filter(title__contains=searched).count()
 
-        return render(request, "search.html", {'searched':searched,'product':product,'product_count':product_count})
+def show_search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        product = Product.objects.filter(title__contains=searched)
+        product_count = Product.objects.filter(title__contains=searched).count()
+
+        return render(request, "search.html",
+                      {'searched': searched, 'product': product, 'product_count': product_count})
     else:
         return render(request, "search.html", {})
 
+
 def send_Email(request):
-    if request.method=="POST":
+    if request.method == "POST":
         sendemailtome = request.POST['sendemailtome']
-    #l:diceplayonline@gmail.com
-    #h:Diceplay1!
-    send_mail('DicePlay - Newsleter','Czesc, Miło nam że zapisałeś się do naszego newsletera!, od teraz będziesz otrzymywał od nas wiadomości z promocjami.  Pozdrawiamy, zespół DicePlay','diceplayonline@gmail.com',[sendemailtome],fail_silently=False)
-    return render(request,'email.html')
+        messages.success(request, True)
+
+    # login: diceplayonline@gmail.com
+    # password: Diceplay1!
+
+    subject, from_email, to = 'DicePlay - Newsleter', 'diceplayonline@gmail.com', sendemailtome
+    text_content = 'This is an important message.'
+    html_content = render_to_string('e-mail/subscribe_welcome_msg.html')
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.mixed_subtype = 'related'
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return HttpResponseRedirect(redirect_to)
+
 
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
@@ -116,26 +129,24 @@ def show_product(request, id):
     return render(request, 'produkt.html', {'show_product': show_product, "rating": rating})
 
 
-
 def show_basket(request):
     show_basket = Basket.objects.all().order_by("id")
     return render(request, 'koszyk.html', {'show_basket': show_basket})
 
 
-def add_to_basket(request,productname):
-    getProductName=get_object_or_404(Product, title=productname)
+def add_to_basket(request, productname):
+    getProductName = get_object_or_404(Product, title=productname)
 
-    if request.method=="GET":
-        return render(request,"index.html",{'data':getProductName})
+    if request.method == "GET":
+        return render(request, "index.html", {'data': getProductName})
 
-
-
-    return render(request,"index.html",{'data':getProductName})
+    return render(request, "index.html", {'data': getProductName})
 
 
 @login_required
 def password_view(request):
     return render(request, 'haslo.html')
+
 
 @login_required
 def orders(request):
@@ -146,4 +157,3 @@ def orders(request):
 def profile(request):
     userDetails = UserProfile.objects.filter(user__username=request.user)
     return render(request, 'profil.html', {'userDetails': userDetails})
-

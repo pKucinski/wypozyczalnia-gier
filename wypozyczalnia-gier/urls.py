@@ -24,7 +24,7 @@ urlpatterns = [
     path('profil/', profile, name='profileDetail'),
     path("registration/", signup, name="signup"),
     path("logout/", logout_request),
-    path('', index),
+    path('', index, name='home'),
     path('<str:productname>/', add_to_basket,name="insertproduct"),
 
     path('djrichtextfield/', include('djrichtextfield.urls')),
