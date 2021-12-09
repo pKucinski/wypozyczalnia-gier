@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -168,6 +169,36 @@ def password_view(request):
 @login_required
 def orders(request):
     return render(request, 'zamowienia.html')
+
+@login_required
+def editProfil(request):
+    userDetails = UserProfile.objects.filter(user__username=request.user)
+    return render(request, 'edycjaProfilu.html', {'userDetails': userDetails})
+
+@login_required
+def updateprofil(request):
+    street = request.POST['ulica']
+    numberOfHouse = request.POST['nrdomu']
+    postCode = request.POST['kodpocztowy']
+    city = request.POST['miasto']
+    phone = request.POST['phone']
+    imie = request.POST['imie']
+    nazwisko = request.POST['nazwisko']
+    email = request.POST['email']
+    u=UserProfile.objects.get(user=request.user)
+    user = User.objects.get(username=request.user)
+    print(user)
+    user.first_name = imie
+    user.last_name=nazwisko
+    user.email=email
+    user.save()
+    u.street=street
+    u.numberOfHouse=numberOfHouse
+    u.postCode=postCode
+    u.city=city
+    u.phone=phone
+    u.save()
+    return render(request, 'edycjaProfilu.html', {'itemToRemove': street})
 
 
 @login_required

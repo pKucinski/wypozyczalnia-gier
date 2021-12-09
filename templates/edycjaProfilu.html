@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 m-2" style="background-color: white;">
+            <h3 class="pt-2">Edycja profilu</h3>
+            <hr/>
+            <h5 class="pt-5"><span class="text-secondary">*Zmień lub dodaj swoje dane</span></h5>
+            <form METHOD="post" action="{% url 'updateprofil' %}">
+                {% csrf_token %}
+            {% for data in userDetails %}
+            <div class="row">
+                <div class="col">
+                    <h3>Dane</h3>
+                    <h5>Imię:</h5>
+                        <input class="form-control-xs" placeholder="Imię:" type="text" value="{{user.first_name}}" name="imie">
+                    <h5>Nazwisko:</h5>
+                        <input class="form-control-xs" placeholder="Nazwisko:" type="text" value="{{user.last_name }}" name="nazwisko">
+                    <h5>E-mail: </h5>
+                        <input type="email" id="form5Example2" class="form-control-xs" placeholder="E-mail:" value="{{data.user.email}}", name="email">
+                    <h5>Telefon: </h5>
+                        <input type="text" class="form-control-xs" placeholder="Telefon:" value="{{data.phone}}" name="phone">
+                </div>
+
+                <div class="col">
+                    <h3>Adres</h3>
+                    <h5>Ulica: </h5>
+                    <input class="form-control-xs" placeholder="Ulica:" type="text" value="{{data.street}}" name="ulica">
+                    <h5>Numer domu/mieszkania: </h5>
+                    <input class="form-control-xs" placeholder="Numer domu/mieszkania:" type="text" value="{{data.numberOfHouse}}" name="nrdomu">
+                    <h5>Kod pocztowy: </h5>
+                    <input class="form-control-xs" placeholder="Kod pocztowy:" type="text" value="{{data.postCode}}" name="kodpocztowy">
+                    <h5>Miasto: </h5>
+                    <input class="form-control-xs" placeholder="Miasto" type="text" value="{{data.city}}" name="miasto">
+                </div>
+
+            </div>
+            <button type="submit" class="m-3 btn btn-search">Zmień Dane</button>
+                 {% endfor %}
+</form>
+
+
+        </div>
+        <div id="profile-list" class="col-3 m-2"style="background-color: white;">
+           <ul>
+               <a href="/"><li>Strona główna</li></a>
+               <hr/>
+               <a href="/profil"><li>Profil</li></a>
+               <hr/>
+               <a href="/haslo"><li>Zmień hasło</li></a>
+               <hr/>
+               <a href="/zamowienia"><li>Zamówienia</li></a>
+               <hr/>
+               <a href="/logout"><li>Wyloguj</li></a>
+           </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
