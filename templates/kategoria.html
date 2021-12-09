@@ -22,7 +22,12 @@
                         <span class="card-text ">{{product.price}}/dzień</span>
                     </div>
                     <div class="add-cart align-text-end p-3">
-                        <a href="{% url 'insertproduct' productname=product%}"><i class="fas fa-cart-plus"></i></a>
+                        <form class="d-flex pt-3" METHOD="post" action="{% url 'searchid' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ product.id }}" name="getid">
+                            <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i>
+                        </button>
+                        </form>
                     </div>
                 </div>
             </div>

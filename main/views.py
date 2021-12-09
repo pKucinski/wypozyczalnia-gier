@@ -134,14 +134,31 @@ def show_basket(request):
     return render(request, 'koszyk.html', {'show_basket': show_basket})
 
 
-def add_to_basket(request, productname):
-    getProductName = get_object_or_404(Product, title=productname)
+def add_to_basket(request):
+    if not Basket.objects.filter(user = request.user).exists():
+        b = Basket(user=request.user)
+        b.save()
 
-    if request.method == "GET":
-        return render(request, "index.html", {'data': getProductName})
+    if request.method == "POST":
+        game = request.POST['getid']
+        addGame = Basket.objects.get(user=request.user)
+        if Basket.objects.filter(user=request.user).filter(product=game).exists():
+            print(True)
+            #tu dodać alert że gra już jest w koszyku
 
-    return render(request, "index.html", {'data': getProductName})
+        addGame.product.add(game)
+        addGame.save()
+        #dodać alert że gra została dodana do koszyka
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return HttpResponseRedirect(redirect_to)
 
+def remove_item_from_basket(request):
+    itemToRemove = request.POST['getidtoDelete']
+    deleteGame = Basket.objects.get(user=request.user)
+    deleteGame.product.remove(itemToRemove)
+    deleteGame.save()
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return HttpResponseRedirect(redirect_to)
 
 @login_required
 def password_view(request):

@@ -16,6 +16,7 @@
                     <th scope="col"></th>
                     <th scope="col" >Nazwa produktu</th>
                     <th scope="col" class='col-sm-1'>cena</th>
+                    <th scope="col" class='col-sm-1'></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,15 @@
                             <td><a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="d-block w-50 px-5" alt="..."></a></td>
                             <td><a href="/produkt/{{product.id}}">{{ product.title }}</a></td>
                             <td>{{ product.price }} zł</td>
+                            <td>
+                            <form class="d-flex pt-3" METHOD="post" action="{% url 'deleteid' %}">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ product.id }}" name="getidtoDelete">
+                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></i>
+                            </button>
+                            </form>
 
+                            </td>
                         </tr>
                         {% endfor %}
                     {% endif %}

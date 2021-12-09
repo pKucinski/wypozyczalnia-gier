@@ -59,10 +59,13 @@
             <p><i class="fas fa-truck float-start pt-1"></i> Darmowa dostawa</p>
             <i class="fas fa-truck float-start pt-1"></i>
             <div class="float-start mx-1" id="deliveryInfo"></div>
+            <form class="d-flex pt-3" METHOD="post" action="{% url 'searchid' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ show_product.id }}" name="getid">
+                <button type="submit" class="btn btn-success btn-lg btn-block mt-4 "><i class="fas fa-cart-plus"></i> Dodaj do koszyka
+                </button>
+            </form>
 
-            <button type="button" class="btn btn-success btn-lg btn-block mt-4 "><i class="fas fa-cart-plus"></i> Dodaj
-                do koszyka
-            </button>
             {% else %}
             <p class="text-secondary"><i class="far fa-times-circle"></i> Produkt niedostpępny</p>
             <button type="button" class="btn btn-secondary btn-lg btn-block"> Poszukaj innych gier</button>
