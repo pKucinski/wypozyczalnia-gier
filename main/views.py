@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.datastructures import MultiValueDictKeyError
 
 from .forms import SignUpForm
 from django.contrib.auth import login
@@ -43,6 +44,18 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/registration.html/', {'form': form})
 
+def dodajOpinie(request):
+    if request.method == "POST":
+        opinia = 'dodajOpiniefield' in request.POST and request.POST['dodajOpiniefield']
+        idproduct = 'idproduct' in request.POST and request.POST['idproduct']
+        categories = 'categories' in request.POST and request.POST['categories']
+        productid = get_object_or_404(Product, pk=idproduct)
+
+        r=Rating(user=request.user,product=productid,text=opinia,stars=categories)
+        r.save()
+
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return HttpResponseRedirect(redirect_to)
 
 @login_required
 def change_password(request):
@@ -133,8 +146,9 @@ def send_Email(request):
 
 def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
-    rating = Rating.objects.all()
-
+    rating = Rating.objects.all().filter(product = show_product)
+    rating_count = Rating.objects.filter(product=show_product).count()
+    
     amount = show_product.amount
     if amount == 0:
         text = False
@@ -145,7 +159,7 @@ def show_product(request, id):
 
     show_product.amount = text
 
-    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating})
+    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating,"rating_count":rating_count})
 
 
 def show_basket(request):

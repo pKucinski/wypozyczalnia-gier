@@ -28,22 +28,35 @@
                 </div>
 
                 <div class="py-3">
-                    <h3 class="pt-5">Oceny</h3>
+
+                    <h3 class="pt-5">Oceny <span class="text-secondary">({{rating_count}} ocen)</span></h3>
                     <hr/>
                     {% for rate in rating %}
-
-                    {% if show_product.id == rate.product.id %}
                     <div class="">
-                        <h5>{{rate.user.username}} ({{rate.created_on}})</h5>
+                        <h5>{{rate.user.username}} ({{rate.created_on}}) ({{rate.stars}}<i style="color: gold;" class="fas fa-star"></i>)</h5>
                         <p>{{rate.text}}</p>
                     </div>
 
-                    {% else %}
-                    <p>Brak ocen, skomentuj jako pierwszy!</p>
-                    {% endif %}
-
                     {% endfor %}
-                </div>
+
+
+
+                    <h5>Dodaj opinię:</h5>
+                    </div>
+                    <form METHOD="post" action="{% url 'dodajOpinie' %}">
+                    {% csrf_token %}
+                        <select name="categories">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option selected="selected" value="5">5</option>
+                        </select>
+                        <textarea class="form-control" rows="3" name="dodajOpiniefield"></textarea>
+                        <input type="hidden" value="{{show_product.id}}" name="idproduct">
+                        <button type="submit" class="btn btn-success mt-3"><i class="fas fa-comment"></i> Opublikuj opinię</button>
+                    </form>
+
             </div>
         </div>
 
