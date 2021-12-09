@@ -4,7 +4,8 @@ from django.urls import path, include
 
 from main import views
 from main.views import index, login_page, faq, orders, profile, logout_request, signup, profile, show_product, \
-    show_basket, products_category, change_password, add_to_basket, remove_item_from_basket, editProfil, updateprofil
+    show_basket, products_category, change_password, add_to_basket, remove_item_from_basket, editProfil, updateprofil, \
+    addGameToDatabase
 
 from main.views import index, login_page, faq, orders, logout_request, signup, profile, show_product, show_basket, change_password,show_search,send_Email
 
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^haslo/$', change_password, name="change_password"),
     path('koszyk/', show_basket),
     path('search/', show_search, name="search_game"),
+    path('addGameToDatabase/', addGameToDatabase ),
     path('index/', add_to_basket, name="searchid"),
     path('basket/', remove_item_from_basket, name="deleteid"),
     path('nigdzie/', updateprofil, name="updateprofil"), #alert że dane zostały zmienione

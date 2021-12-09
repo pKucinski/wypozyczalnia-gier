@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -69,6 +69,24 @@ def logout_request(request):
 
 def faq(request):
     return render(request, 'faq.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def addGameToDatabase(request):
+    data = Product.objects.all()
+    all_categories = Categories.objects.all()
+    if request.method == "POST" and request.FILES['imagetoUpload']:
+        tytul = request.POST['tytul']
+        opis = request.POST['opis']
+        wiek = request.POST['wiek']
+        cena = request.POST['cena']
+        ilosc = request.POST['ilosc']
+        kategoria = request.POST['categories']
+        category = get_object_or_404(Categories, category_name=kategoria)
+        images = request.FILES['imagetoUpload']
+        p=Product(title=tytul,description=opis,age=wiek,price=cena,amount=ilosc,category=category,image=images)
+        p.save()
+
+    return render(request, 'addGameToDatabase.html', {"all_categories": all_categories, "products": data})
 
 
 def koszyk(request):
@@ -187,7 +205,6 @@ def updateprofil(request):
     email = request.POST['email']
     u=UserProfile.objects.get(user=request.user)
     user = User.objects.get(username=request.user)
-    print(user)
     user.first_name = imie
     user.last_name=nazwisko
     user.email=email
