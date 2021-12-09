@@ -234,5 +234,8 @@ def updateprofil(request):
 
 @login_required
 def profile(request):
+    if not UserProfile.objects.filter(user = request.user).exists():
+        u=UserProfile(user=request.user)
+        u.save()
     userDetails = UserProfile.objects.filter(user__username=request.user)
     return render(request, 'profil.html', {'userDetails': userDetails})
