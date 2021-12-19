@@ -7,11 +7,23 @@
     <div class="row">
         <div class="col-8 py-4 border border-2 rounded" style="background-color:#fff" >
             <div class="row">
+
                 <div class="col-7">
                     <img src="{{ show_product.image.url }}" class="d-block w-100 px-5" alt="...">
+
                 </div>
+
                 <div class="col pt-5" style="background-color:#fff">
                     <h2>{{show_product.title}}</h2>
+                    {% if user.is_superuser %}
+                        <div class=" position-relative align-text-end end-0 p-1">
+                            <form METHOD="post" action="{% url 'gametodelete' %}">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ product.id }}" name="getidtodel">
+                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    {% endif %}
                     <h5>ocena <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star-half"></i></h5>
                     <hr>
