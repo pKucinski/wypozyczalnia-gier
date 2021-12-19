@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     numberOfHouse = models.CharField(max_length=10)
     postCode = models.CharField(max_length=6)
     city = models.CharField(max_length=20)
-    phone = PhoneNumberField(null=False, blank=False, unique=True)
+    phone = PhoneNumberField(null=False, blank=False, unique=False, max_length=9)
 
     def __str__(self):
           return "%s's profile" % self.user

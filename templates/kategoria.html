@@ -15,6 +15,17 @@
 
             <a href="/produkt/{{product.id}}"><img src="{{ product.image.url }}" class="card-img-top d-block w-100"
                                                   alt="..."></a>
+            {% if user.is_superuser %}
+            <div class="position-absolute align-text-end end-0 p-1">
+
+            <form METHOD="post" action="{% url 'gametodelete' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ product.id }}" name="getidtodel">
+                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+            </form>
+
+                </div>
+            {% endif %}
             <div class="mt-auto p-2">
                 <h5 class="card-title"><a href="/produkt/{{product.id}}">{{product.title}}</a></h5>
                 <div>

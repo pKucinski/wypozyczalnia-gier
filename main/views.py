@@ -193,6 +193,17 @@ def remove_item_from_basket(request):
     redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
     return HttpResponseRedirect(redirect_to)
 
+def removeGame(request):
+    if request.method == "POST":
+        game = request.POST['getidtodel']
+        deletegame = Product.objects.get(pk=game).delete()
+
+
+
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return HttpResponseRedirect(redirect_to)
+
+
 @login_required
 def password_view(request):
     return render(request, 'haslo.html')
@@ -229,7 +240,8 @@ def updateprofil(request):
     u.city=city
     u.phone=phone
     u.save()
-    return render(request, 'edycjaProfilu.html', {'itemToRemove': street})
+
+    return HttpResponseRedirect("/profil")
 
 
 @login_required
