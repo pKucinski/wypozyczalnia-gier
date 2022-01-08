@@ -39,12 +39,6 @@ function whenDelivery()
     }
 
 }
-function getStars()
-{
-    var getStars =document.getElementById("deliveryInfo").innerHTML;
-    console.log(getStars);
-
-}
 
 var myModal = new bootstrap.Modal(document.getElementById("basicExampleModal"), {});
 document.onreadystatechange = function () {
