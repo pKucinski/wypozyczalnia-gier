@@ -56,6 +56,7 @@
 
                     <h5>Dodaj opinię:</h5>
                     </div>
+                {% if user.is_authenticated %}
                     <form METHOD="post" action="{% url 'dodajOpinie' %}">
                     {% csrf_token %}
                         <select name="categories">
@@ -70,6 +71,10 @@
                         <input type="hidden" value="{{show_product.id}}" name="idproduct">
                         <button type="submit" class="btn btn-success mt-3"><i class="fas fa-comment"></i> Opublikuj opinię</button>
                     </form>
+                {% else %}
+                <h5><a class="text-warning" href="/accounts/login">Zaloguj się</a> aby dodać opinię o produkcie</h5>
+
+                {% endif %}
 
             </div>
         </div>
