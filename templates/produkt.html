@@ -24,8 +24,8 @@
                             </form>
                         </div>
                     {% endif %}
-                    <h5>ocena <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star-half"></i></h5>
+                    <h5>Ocena:<span id="stars">{{avg_rating}}</span> <i style="color: gold;" class="fas fa-star"></i></h5>
+
                     <hr>
                     <p class="pt-2">Kategoria: {{show_product.category}}
                     <p>
@@ -41,7 +41,8 @@
 
                 <div class="py-3">
 
-                    <h3 class="pt-5">Oceny <span class="text-secondary">({{rating_count}} ocen)</span></h3>
+                    <h3 class="pt-5">Oceny <span class="text-secondary">({{rating_count}} ocen)</span>
+                    <span class="text-secondary">Średnia ocen: {{avg_rating}}</span> <i style="color: gold;" class="fas fa-star"></i></h3>
                     <hr/>
                     {% for rate in rating %}
                     <div class="">
@@ -64,6 +65,7 @@
                             <option value="4">4</option>
                             <option selected="selected" value="5">5</option>
                         </select>
+                        <i style="color: gold;" class="fas fa-star"></i>
                         <textarea class="form-control" rows="3" name="dodajOpiniefield"></textarea>
                         <input type="hidden" value="{{show_product.id}}" name="idproduct">
                         <button type="submit" class="btn btn-success mt-3"><i class="fas fa-comment"></i> Opublikuj opinię</button>
@@ -82,7 +84,7 @@
             <p><i class="far fa-clock"></i> Nieograniczony czas zwrotu</p>
             <p><i class="far fa-smile"></i> Gwarantowana zabawa</p>
             <p><i class="fas fa-truck float-start pt-1"></i> Darmowa dostawa</p>
-            <i class="fas fa-truck float-start pt-1"></i>
+
             <div class="float-start mx-1" id="deliveryInfo"></div>
             <form class="d-flex pt-3" METHOD="post" action="{% url 'searchid' %}">
                 {% csrf_token %}
