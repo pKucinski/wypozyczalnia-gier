@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
-
+from django.db.models import Avg
 from .forms import SignUpForm
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -148,7 +148,13 @@ def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
     rating = Rating.objects.all().filter(product = show_product)
     rating_count = Rating.objects.filter(product=show_product).count()
-    
+    avg_rating= Rating.objects.filter(product=show_product).aggregate(Avg('stars'))
+    try:
+        avg_rating = round(list(avg_rating.values())[0],1)
+    except:
+        avg_rating = 0
+
+
     amount = show_product.amount
     if amount == 0:
         text = False
@@ -159,7 +165,7 @@ def show_product(request, id):
 
     show_product.amount = text
 
-    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating,"rating_count":rating_count})
+    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating,"rating_count":rating_count, 'avg_rating':avg_rating})
 
 
 def show_basket(request):
