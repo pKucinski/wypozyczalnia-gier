@@ -5,7 +5,7 @@
 
 <div class="container my-5">
     <div class="row">
-        <div class="col-8 py-4 border border-2 rounded" style="background-color:#fff" >
+        <div class="col-8 py-4 border border-2 rounded" style="background-color:#fff">
             <div class="row">
 
                 <div class="col-7">
@@ -16,16 +16,49 @@
                 <div class="col pt-5" style="background-color:#fff">
                     <h2>{{show_product.title}}</h2>
                     {% if user.is_superuser %}
-                        <div class=" position-relative align-text-end end-0 p-1">
-                            <form METHOD="post" action="{% url 'gametodelete' %}">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{ product.id }}" name="getidtodel">
-                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </div>
+                    <div class=" position-relative align-text-end end-0 p-1">
+                        <form METHOD="post" action="{% url 'gametodelete' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ product.id }}" name="getidtodel">
+                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
                     {% endif %}
-                    <h5>ocena <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star-half"></i></h5>
+                    <h5>Ocena:<span id="stars">{{avg_rating}}</span></h5>
+
+
+                    {% if avg_rating == 0 %}
+                    Brak ocen
+                    {% elif avg_rating <= 1.4 %}
+                    <i style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 1.9 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                       class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 2.4 %}
+                    <i style="color: gold;" class="fas fa-star"></i> <i style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 2.9 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 3.4 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 3.9 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                        class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 4.4 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 4.9 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star-half"></i>
+                    {% elif avg_rating == 5 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                        style="color: gold;" class="fas fa-star"></i>
+                    {% endif %}
+
                     <hr>
                     <p class="pt-2">Kategoria: {{show_product.category}}
                     <p>
@@ -41,33 +74,127 @@
 
                 <div class="py-3">
 
-                    <h3 class="pt-5">Oceny <span class="text-secondary">({{rating_count}} ocen)</span></h3>
+                    <h3 class="pt-5">Oceny <span class="text-secondary">({{rating_count}} ocen)</span>
+                        <span class="text-secondary">Średnia ocen: {{avg_rating}}{% if avg_rating == 0 %}
+                        Brak ocen
+                    {% elif avg_rating <= 1.4 %}
+                        <i style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 1.9 %}
+                        <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                           class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 2.4 %}
+                        <i style="color: gold;" class="fas fa-star"></i> <i style="color: gold;"
+                                                                            class="fas fa-star"></i>
+                    {% elif avg_rating <= 2.9 %}
+                        <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 3.4 %}
+                        <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i>
+                    {% elif avg_rating <= 3.9 %}
+                        <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star-half"></i>
+                    {% elif avg_rating <= 4.4 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i>
+                    {% elif avg_rating <= 4.9 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star-half"></i>
+                    {% elif avg_rating == 5 %}
+                    <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;" class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i>
+                    {% endif %}</span></h3>
                     <hr/>
                     {% for rate in rating %}
                     <div class="">
-                        <h5>{{rate.user.username}} ({{rate.created_on}}) ({{rate.stars}}<i style="color: gold;" class="fas fa-star"></i>)</h5>
+                        <h5>{{rate.user.username}} ({{rate.created_on}}) {% if avg_rating == 0 %}
+                            Brak ocen
+                            {% elif rate.stars <= 1.4 %}
+                            <i style="color: gold;" class="fas fa-star"></i>
+                            {% elif rate.stars <= 1.9 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star-half"></i>
+                            {% elif rate.stars <= 2.4 %}
+                            <i style="color: gold;" class="fas fa-star"></i> <i style="color: gold;"
+                                                                                class="fas fa-star"></i>
+                            {% elif rate.stars <= 2.9 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star-half"></i>
+                            {% elif rate.stars <= 3.4 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i>
+                            {% elif rate.stars <= 3.9 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star-half"></i>
+                            {% elif rate.stars <= 4.4 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i>
+                            {% elif rate.stars <= 4.9 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star-half"></i>
+                            {% elif rate.stars == 5 %}
+                            <i style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                               class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i><i style="color: gold;"
+                                                                                    class="fas fa-star"></i><i
+                                    style="color: gold;" class="fas fa-star"></i>
+                            {% endif %}</h5>
                         <p>{{rate.text}}</p>
                     </div>
 
                     {% endfor %}
 
 
-
                     <h5>Dodaj opinię:</h5>
-                    </div>
-                    <form METHOD="post" action="{% url 'dodajOpinie' %}">
+                </div>
+                <form METHOD="post" action="{% url 'dodajOpinie' %}">
                     {% csrf_token %}
-                        <select name="categories">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option selected="selected" value="5">5</option>
-                        </select>
-                        <textarea class="form-control" rows="3" name="dodajOpiniefield"></textarea>
-                        <input type="hidden" value="{{show_product.id}}" name="idproduct">
-                        <button type="submit" class="btn btn-success mt-3"><i class="fas fa-comment"></i> Opublikuj opinię</button>
-                    </form>
+
+
+                    </style>
+
+
+                    <div name="categories" class="wrapper">
+                        <input value="request.POST.get('rg-1')" type="radio" id="r1" name="rg1">
+                        <label for="r1"><i class="fas fa-star"></i></label>
+                        <input value="request.POST.get('rg-2)" type="radio" id="r2" name="rg1">
+                        <label for="r2"><i class="fas fa-star"></i></label>
+                        <input value="3" type="radio" id="r3" name="rg1">
+                        <label for="r3"><i class="fas fa-star"></i></label>
+                        <input value="4" type="radio" id="r4" name="rg1">
+                        <label for="r4"><i class="fas fa-star"></i></label>
+                        <input value="5" type="radio" id="r5" name="rg1">
+                        <label for="r5"><i class="fas fa-star"></i></label>
+                    </div> <br><br>
+
+                    <!--<select name="categories">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option selected="selected" value="5">5</option>
+                    </select> -->
+
+                    <textarea class="form-control" rows="3" name="dodajOpiniefield"></textarea>
+                    <input type="hidden" value="{{show_product.id}}" name="idproduct">
+                    <button type="submit" class="btn btn-success mt-3"><i class="fas fa-comment"></i> Opublikuj opinię
+                    </button>
+                </form>
 
             </div>
         </div>
@@ -82,12 +209,13 @@
             <p><i class="far fa-clock"></i> Nieograniczony czas zwrotu</p>
             <p><i class="far fa-smile"></i> Gwarantowana zabawa</p>
             <p><i class="fas fa-truck float-start pt-1"></i> Darmowa dostawa</p>
-            <i class="fas fa-truck float-start pt-1"></i>
+
             <div class="float-start mx-1" id="deliveryInfo"></div>
             <form class="d-flex pt-3" METHOD="post" action="{% url 'searchid' %}">
                 {% csrf_token %}
                 <input type="hidden" value="{{ show_product.id }}" name="getid">
-                <button type="submit" class="btn btn-success btn-lg btn-block mt-4 "><i class="fas fa-cart-plus"></i> Dodaj do koszyka
+                <button type="submit" class="btn btn-success btn-lg btn-block mt-4 "><i class="fas fa-cart-plus"></i>
+                    Dodaj do koszyka
                 </button>
             </form>
 

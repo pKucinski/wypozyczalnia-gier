@@ -75,12 +75,18 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col">
+                                {% if user.is_authenticated %}
+                <div class="col cartcol">
                     <a href="/koszyk">
+                        {% if basket_quantity %}
+                        <div id="cart_count">{{ basket_quantity }}</div>
+                        {% endif %}
                         <span class="fa fa-shopping-cart"></span>
                         <p>Koszyk</p>
                     </a>
                 </div>
+                {% endif %}
+
                 <div class="col">
                     <a href="/faq">
                         <span class="row text-center">

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
-
+from django.db.models import Avg, Count
 from .forms import SignUpForm
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -19,11 +19,11 @@ from django.core.mail import EmailMultiAlternatives
 
 def index(request):
     products = Product.objects.all().order_by("-id")
-    return render(request, 'index.html', {'products': products})
+    return render(request, 'index.html', {'products': products,"basket_quantity":basket_quantity(request)})
 
 
 def login_page(request):
-    return render(request, 'registration/login.html')
+    return render(request, 'registration/login.html',{"basket_quantity":basket_quantity(request)})
 
 
 def signup(request):
@@ -42,7 +42,7 @@ def signup(request):
             return redirect('/')
     else:
         form = SignUpForm()
-    return render(request, 'registration/registration.html/', {'form': form})
+    return render(request, 'registration/registration.html/', {'form': form,"basket_quantity":basket_quantity(request)})
 
 def dodajOpinie(request):
     if request.method == "POST":
@@ -71,7 +71,7 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'haslo.html', {
-        'form': form
+        'form': form,"basket_quantity":basket_quantity(request)
     })
 
 
@@ -81,7 +81,7 @@ def logout_request(request):
 
 
 def faq(request):
-    return render(request, 'faq.html')
+    return render(request, 'faq.html',{"basket_quantity":basket_quantity(request)})
 
 @user_passes_test(lambda u: u.is_superuser)
 def addGameToDatabase(request):
@@ -99,7 +99,7 @@ def addGameToDatabase(request):
         p=Product(title=tytul,description=opis,age=wiek,price=cena,amount=ilosc,category=category,image=images)
         p.save()
 
-    return render(request, 'addGameToDatabase.html', {"all_categories": all_categories, "products": data})
+    return render(request, 'addGameToDatabase.html', {"all_categories": all_categories, "products": data,"basket_quantity":basket_quantity(request)})
 
 
 def koszyk(request):
@@ -109,7 +109,7 @@ def koszyk(request):
 def products_category(request, id):
     category = get_object_or_404(Categories, pk=id)
     products = Product.objects.all
-    return render(request, 'kategoria.html', {"category": category, "products": products})
+    return render(request, 'kategoria.html', {"category": category, "products": products,"basket_quantity":basket_quantity(request)})
 
 
 def show_search(request):
@@ -121,7 +121,7 @@ def show_search(request):
         return render(request, "search.html",
                       {'searched': searched, 'product': product, 'product_count': product_count})
     else:
-        return render(request, "search.html", {})
+        return render(request, "search.html", {"basket_quantity":basket_quantity(request)})
 
 
 def send_Email(request):
@@ -148,7 +148,13 @@ def show_product(request, id):
     show_product = get_object_or_404(Product, pk=id)
     rating = Rating.objects.all().filter(product = show_product)
     rating_count = Rating.objects.filter(product=show_product).count()
-    
+    avg_rating= Rating.objects.filter(product=show_product).aggregate(Avg('stars'))
+    try:
+        avg_rating = round(list(avg_rating.values())[0],1)
+    except:
+        avg_rating = 0
+
+
     amount = show_product.amount
     if amount == 0:
         text = False
@@ -159,15 +165,24 @@ def show_product(request, id):
 
     show_product.amount = text
 
-    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating,"rating_count":rating_count})
+    return render(request, 'produkt.html', {'show_product': show_product, "rating": rating,"rating_count":rating_count, 'avg_rating':avg_rating,"basket_quantity":basket_quantity(request)})
 
 
 def show_basket(request):
+    if (request.user.is_anonymous):
+        return HttpResponseRedirect("/registration/")
     show_basket = Basket.objects.all().order_by("id")
-    return render(request, 'koszyk.html', {'show_basket': show_basket})
+    return render(request, 'koszyk.html', {'show_basket': show_basket,"basket_quantity":basket_quantity(request)})
 
+def basket_quantity(request):
+    if (request.user.is_anonymous):
+        return #
+    q = Basket.objects.filter(user=request.user).annotate(num_submissions=Count('product'))
+    return q[0].num_submissions
 
 def add_to_basket(request):
+    if (request.user.is_anonymous):
+        return HttpResponseRedirect("/registration/")
     if not Basket.objects.filter(user = request.user).exists():
         b = Basket(user=request.user)
         b.save()
@@ -211,12 +226,12 @@ def password_view(request):
 
 @login_required
 def orders(request):
-    return render(request, 'zamowienia.html')
+    return render(request, 'zamowienia.html',{"basket_quantity":basket_quantity(request)})
 
 @login_required
 def editProfil(request):
     userDetails = UserProfile.objects.filter(user__username=request.user)
-    return render(request, 'edycjaProfilu.html', {'userDetails': userDetails})
+    return render(request, 'edycjaProfilu.html', {'userDetails': userDetails,"basket_quantity":basket_quantity(request)})
 
 @login_required
 def updateprofil(request):
@@ -250,4 +265,4 @@ def profile(request):
         u=UserProfile(user=request.user)
         u.save()
     userDetails = UserProfile.objects.filter(user__username=request.user)
-    return render(request, 'profil.html', {'userDetails': userDetails})
+    return render(request, 'profil.html', {'userDetails': userDetails,"basket_quantity":basket_quantity(request)})
